@@ -34,6 +34,18 @@ variable "dynamodb_read_tables" {
   default     = []
 }
 
+variable "dynamodb_write" {
+  description = "Bit indicating whether to create a policy to allow write access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_write_tables" {
+  description = "A list of dynamodb tables to allow writing to"
+  type        = "list"
+  default     = []
+}
+
 variable "policy_type" {
   type        = "string"
   description = "The type of policy to generate. Valid types are: user, group, role. This is used to determine the maximum allowed length of the policy."

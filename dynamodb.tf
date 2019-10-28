@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "dynamodb_read" {
       "dynamodb:Scan",
     ]
 
-    resources = "${var.dynamodb_read_tables}"
+    resources = ["${var.dynamodb_read_tables}"]
   }
 }
 
@@ -57,6 +57,8 @@ data "aws_iam_policy_document" "dynamodb_write" {
 
     effect = "Allow"
 
-    resources = "${var.dynamodb_write_tables}"
+    resources = [
+      "${var.dynamodb_write_tables}",
+    ]
   }
 }
