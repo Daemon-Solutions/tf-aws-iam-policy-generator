@@ -1,23 +1,35 @@
 variable "s3_readonly" {
-  description = "Bit indicating whether to create a role policy to allow List/Get objects in a bucket"
+  description = "Bit indicating whether to create a policy to allow List/Get objects in a bucket"
   type        = "string"
   default     = "0"
 }
 
 variable "s3_read_buckets" {
-  description = "A list of s3 buckets to create read role policies on"
+  description = "A list of S3 buckets to create allow access to via the generated policies"
   type        = "list"
   default     = []
 }
 
 variable "s3_write" {
-  description = "Bit indicating whether to create a role policy to allow full access to a bucket"
+  description = "Bit indicating whether to create a policy to allow full access to a bucket"
   type        = "string"
   default     = "0"
 }
 
 variable "s3_write_buckets" {
-  description = "A list of s3 buckets to create write role policies on"
+  description = "A list of S3 buckets to create policies to allow writing to"
+  type        = "list"
+  default     = []
+}
+
+variable "dynamodb_read" {
+  description = "Bit indicating whether to create a policy to allow read only access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_read_tables" {
+  description = "A list of dynamodb tables to allow reading from"
   type        = "list"
   default     = []
 }
