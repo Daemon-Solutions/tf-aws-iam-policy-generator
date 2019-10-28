@@ -6,9 +6,9 @@ locals {
 }
 
 module "policy_condenser" {
-  source = "../tf-aws-iam-policy-condenser"
+  source = "git::ssh://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git"
 
-  policy_type = "user"
+  policy_type = "${var.policy_type}"
 
   input_policies = [
     "${local.policies}",
