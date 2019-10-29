@@ -1,13 +1,11 @@
 variable "sqs_list" {
   description = "Bit indicating whether to create a policy to allow listing SQS queues (this is automatically added if any other access to SQS queues is granted)"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "sqs_readonly" {
   description = "Bit indicating whether to create a policy to allow list and read queue messages."
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "sqs_read_queues" {
@@ -18,8 +16,7 @@ variable "sqs_read_queues" {
 
 variable "sqs_write" {
   description = "Bit indicating whether to create a policy to allow write access to a SQS queues and their messages."
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "sqs_write_queues" {
@@ -30,8 +27,7 @@ variable "sqs_write_queues" {
 
 variable "sqs_full_access" {
   description = "Bit indicating whether to create a policy to allow full access to a SQS queue (including modifying and deleting the queue)"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "sqs_full_access_queues" {
@@ -41,7 +37,7 @@ variable "sqs_full_access_queues" {
 }
 
 data "aws_iam_policy_document" "sqs_list_queues" {
-  count = "${var.sqs_list == "1" || var.sqs_readonly == "1" || var.sqs_write == "1" || var.sqs_full_access == "1" ? "1" : "0"}"
+  count = "${var.sqs_list || var.sqs_readonly || var.sqs_write || var.sqs_full_access ? "1" : "0"}"
 
   statement {
     sid = "SQSListQueues"

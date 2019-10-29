@@ -1,13 +1,11 @@
 variable "s3_list" {
   description = "Bit indicating whether to create a policy to allow listing buckets (this is automatically added if any other access to buckets is granted)"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "s3_readonly" {
   description = "Bit indicating whether to create a policy to allow List/Get objects in a bucket"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "s3_read_buckets" {
@@ -18,8 +16,7 @@ variable "s3_read_buckets" {
 
 variable "s3_write" {
   description = "Bit indicating whether to create a policy to allow write access to a buckets objects and their ACLs."
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "s3_write_buckets" {
@@ -30,8 +27,7 @@ variable "s3_write_buckets" {
 
 variable "s3_full_access" {
   description = "Bit indicating whether to create a policy to allow full access to a bucket (including modifying and deleting the bucket)"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "s3_full_access_buckets" {
@@ -41,7 +37,7 @@ variable "s3_full_access_buckets" {
 }
 
 data "aws_iam_policy_document" "s3_list" {
-  count = "${var.s3_list == "1" || var.s3_readonly == "1" || var.s3_write == "1" || var.s3_full_access == "1" ? "1" : "0"}"
+  count = "${var.s3_list || var.s3_readonly || var.s3_write || var.s3_full_access ? "1" : "0"}"
 
   statement {
     sid = "S3ListBuckets"

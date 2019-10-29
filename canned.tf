@@ -1,6 +1,6 @@
 variable "cloudcraft_access" {
   description = "Whether to add a statement with the permissions required for Cloudcraft to access the account"
-  default     = "0"
+  default     = false
 }
 
 data "aws_iam_policy_document" "cloudcraft_access" {

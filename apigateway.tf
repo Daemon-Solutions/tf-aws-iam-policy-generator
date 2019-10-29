@@ -1,7 +1,6 @@
 variable "apigateway_read" {
   description = "Bit indicating whether to create a policy to allow read only access to APIGateway APIs"
-  type        = "string"
-  default     = "0"
+  default     = false
 }
 
 variable "apigateway_read_apis" {
@@ -13,11 +12,11 @@ variable "apigateway_read_apis" {
 variable "apigateway_write" {
   description = "Bit indicating whether to create a policy to allow write access to APIGateway APIs"
   type        = "string"
-  default     = "0"
+  default     = false
 }
 
-variable "apigateway_write_tables" {
-  description = "A list of APIGateway tables to allow writing to"
+variable "apigateway_write_apis" {
+  description = "A list of APIGateway APIs to allow writing to"
   type        = "list"
   default     = []
 }
@@ -25,10 +24,10 @@ variable "apigateway_write_tables" {
 variable "apigateway_full_access" {
   description = "Bit indicating whether to create a policy to allow full access to APIGateway APIs"
   type        = "string"
-  default     = "0"
+  default     = false
 }
 
-variable "apigateway_full_access_tables" {
+variable "apigateway_full_access_apis" {
   description = "A list of APIGateway APIs to allow full access to"
   type        = "list"
   default     = []
