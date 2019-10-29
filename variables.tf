@@ -1,3 +1,9 @@
+variable "s3_list" {
+  description = "Bit indicating whether to create a policy to allow listing buckets (this is automatically added if any other access to buckets is granted)"
+  type        = "string"
+  default     = "0"
+}
+
 variable "s3_readonly" {
   description = "Bit indicating whether to create a policy to allow List/Get objects in a bucket"
   type        = "string"
@@ -34,6 +40,12 @@ variable "s3_full_access_buckets" {
   default     = []
 }
 
+variable "dynamodb_list" {
+  description = "Bit indicating whether to create a policy to allow listing dynamodb tables (this is automatically added if any other access to dynamodb is granted)"
+  type        = "string"
+  default     = "0"
+}
+
 variable "dynamodb_read" {
   description = "Bit indicating whether to create a policy to allow read only access to dynamodb tables"
   type        = "string"
@@ -58,6 +70,18 @@ variable "dynamodb_write_tables" {
   default     = []
 }
 
+variable "dynamodb_full_access" {
+  description = "Bit indicating whether to create a policy to allow full access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_full_access_tables" {
+  description = "A list of dynamodb tables to allow full access to"
+  type        = "list"
+  default     = []
+}
+
 variable "policy_type" {
   type        = "string"
   description = "The type of policy to generate. Valid types are: user, group, role. This is used to determine the maximum allowed length of the policy."
@@ -76,4 +100,46 @@ variable "policy_type_length_limit" {
 variable "policy_version" {
   type    = "string"
   default = "2012-10-17"
+}
+
+variable "sqs_list" {
+  description = "Bit indicating whether to create a policy to allow listing SQS queues (this is automatically added if any other access to SQS queues is granted)"
+  type        = "string"
+  default     = "0"
+}
+
+variable "sqs_readonly" {
+  description = "Bit indicating whether to create a policy to allow list and read queue messages."
+  type        = "string"
+  default     = "0"
+}
+
+variable "sqs_read_buckets" {
+  description = "A list of SQS queues to allow read access to via the generated policies"
+  type        = "list"
+  default     = []
+}
+
+variable "sqs_write" {
+  description = "Bit indicating whether to create a policy to allow write access to a SQS queues and their messages."
+  type        = "string"
+  default     = "0"
+}
+
+variable "sqs_write_buckets" {
+  description = "A list of SQS queues to allow writing to"
+  type        = "list"
+  default     = []
+}
+
+variable "sqs_full_access" {
+  description = "Bit indicating whether to create a policy to allow full access to a SQS queue (including modifying and deleting the queue)"
+  type        = "string"
+  default     = "0"
+}
+
+variable "s3_full_access_buckets" {
+  description = "A list of SQS queues to allow full access to"
+  type        = "list"
+  default     = []
 }

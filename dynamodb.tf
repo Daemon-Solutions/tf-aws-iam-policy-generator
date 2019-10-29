@@ -1,5 +1,5 @@
 data "aws_iam_policy_document" "dynamodb_list" {
-  count = "${var.dynamodb_read == "1" || var.dynamodb_write == "1" ? "1" : "0"}"
+  count = "${var.dynamodb_read == "1" || var.dynamodb_write == "1" || var.dynamodb_full_access == "1" || var.dynamodb_list == "1" ? "1" : "0"}"
 
   statement {
     sid    = "DynamoDBListAndDescribeTables"
@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "dynamodb_read" {
     sid = "DynamoDBReadOnlyTableAccess"
 
     actions = [
-      "dynamodb:BatchGet*",
+      "dynamodb:BatchGetItem",
       "dynamodb:DescribeStream",
       "dynamodb:DescribeTable",
       "dynamodb:Get*",
@@ -42,16 +42,9 @@ data "aws_iam_policy_document" "dynamodb_write" {
     sid = "DynamoDBWriteTableAccess"
 
     actions = [
-      "dynamodb:BatchGet*",
-      "dynamodb:DescribeStream",
-      "dynamodb:DescribeTable",
-      "dynamodb:Get*",
-      "dynamodb:Query",
-      "dynamodb:Scan",
-      "dynamodb:BatchWrite*",
-      "dynamodb:CreateTable",
-      "dynamodb:Delete*",
-      "dynamodb:Update*",
+      "dynamodb:BatchWriteItem",
+      "dynamodb:DeleteItem",
+      "dynamodb:UpdateItem",
       "dynamodb:PutItem",
     ]
 
@@ -59,6 +52,24 @@ data "aws_iam_policy_document" "dynamodb_write" {
 
     resources = [
       "${var.dynamodb_write_tables}",
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "dynamodb_full_access" {
+  count = "${var.dynamodb_full_access}"
+
+  statement {
+    sid = "DynamoDBFullAccessTables"
+
+    actions = [
+      "s3:*)",
+    ]
+
+    effect = "Allow"
+
+    resources = [
+      "${var.dynamodb_full_access_tables}",
     ]
   }
 }

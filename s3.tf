@@ -1,5 +1,5 @@
 data "aws_iam_policy_document" "s3_listbuckets" {
-  count = "${var.s3_readonly == "1" || var.s3_write == "1" || var.s3_full_access == "1" ? "1" : "0"}"
+  count = "${var.s3_readonly == "1" || var.s3_write == "1" || var.s3_full_access == "1" || var.s3_list == "1" ? "1" : "0"}"
 
   statement {
     sid = "S3ListBuckets"
