@@ -2,6 +2,7 @@ locals {
   policies = [
     "${data.aws_iam_policy_document.s3_readonly.*.json}",
     "${data.aws_iam_policy_document.s3_write.*.json}",
+    "${data.aws_iam_policy_document.s3_full.*.json}",
     "${data.aws_iam_policy_document.dynamodb_list.*.json}",
     "${data.aws_iam_policy_document.dynamodb_read.*.json}",
     "${data.aws_iam_policy_document.dynamodb_write.*.json}",

@@ -11,13 +11,25 @@ variable "s3_read_buckets" {
 }
 
 variable "s3_write" {
-  description = "Bit indicating whether to create a policy to allow full access to a bucket"
+  description = "Bit indicating whether to create a policy to allow write access to a buckets objects and their ACLs."
   type        = "string"
   default     = "0"
 }
 
 variable "s3_write_buckets" {
   description = "A list of S3 buckets to create policies to allow writing to"
+  type        = "list"
+  default     = []
+}
+
+variable "s3_full_access" {
+  description = "Bit indicating whether to create a policy to allow full access to a bucket (including modifying and deleting the bucket)"
+  type        = "string"
+  default     = "0"
+}
+
+variable "s3_full_access_buckets" {
+  description = "A list of S3 buckets to create policies to allow full access to"
   type        = "list"
   default     = []
 }
