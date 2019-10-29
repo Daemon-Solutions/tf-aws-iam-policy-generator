@@ -1,5 +1,47 @@
+variable "dynamodb_list" {
+  description = "Bit indicating whether to create a policy to allow listing dynamodb tables (this is automatically added if any other access to dynamodb is granted)"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_read" {
+  description = "Bit indicating whether to create a policy to allow read only access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_read_tables" {
+  description = "A list of dynamodb tables to allow reading from"
+  type        = "list"
+  default     = []
+}
+
+variable "dynamodb_write" {
+  description = "Bit indicating whether to create a policy to allow write access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_write_tables" {
+  description = "A list of dynamodb tables to allow writing to"
+  type        = "list"
+  default     = []
+}
+
+variable "dynamodb_full_access" {
+  description = "Bit indicating whether to create a policy to allow full access to dynamodb tables"
+  type        = "string"
+  default     = "0"
+}
+
+variable "dynamodb_full_access_tables" {
+  description = "A list of dynamodb tables to allow full access to"
+  type        = "list"
+  default     = []
+}
+
 data "aws_iam_policy_document" "dynamodb_list" {
-  count = "${var.dynamodb_read == "1" || var.dynamodb_write == "1" || var.dynamodb_full_access == "1" || var.dynamodb_list == "1" ? "1" : "0"}"
+  count = "${var.dynamodb_list == "1" || var.dynamodb_read == "1" || var.dynamodb_write == "1" || var.dynamodb_full_access == "1" ? "1" : "0"}"
 
   statement {
     sid    = "DynamoDBListAndDescribeTables"
@@ -63,7 +105,7 @@ data "aws_iam_policy_document" "dynamodb_full_access" {
     sid = "DynamoDBFullAccessTables"
 
     actions = [
-      "s3:*)",
+      "dynamodb:*",
     ]
 
     effect = "Allow"
