@@ -40,7 +40,7 @@ variable "s3_full_access_buckets" {
   default     = []
 }
 
-data "aws_iam_policy_document" "s3_listbuckets" {
+data "aws_iam_policy_document" "s3_list" {
   count = "${var.s3_list == "1" || var.s3_readonly == "1" || var.s3_write == "1" || var.s3_full_access == "1" ? "1" : "0"}"
 
   statement {
