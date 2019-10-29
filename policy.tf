@@ -1,5 +1,5 @@
 module "policy_condenser" {
-  source = "git::ssh://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v0.0.2"
+  source = "git::ssh://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v0.0.1"
 
   policy_type = "${var.policy_type}"
 
