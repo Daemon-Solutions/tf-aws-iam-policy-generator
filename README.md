@@ -21,8 +21,8 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | dynamodb\_write | Bit indicating whether to create a policy to allow write access to dynamodb tables | string | `"false"` | no |
 | dynamodb\_write\_tables | A list of dynamodb tables to allow writing to | list | `<list>` | no |
 | policy\_type | The type of policy to generate. Valid types are: user, group, role. This is used to determine the maximum allowed length of the policy. | string | n/a | yes |
-| policy\_type\_length\_limit |  | map | `<map>` | no |
-| policy\_version |  | string | `"2012-10-17"` | no |
+| policy\_type\_length\_limit | A map containing maximum length of the various types of IAM policy \(user, group or role\). | map | `<map>` | no |
+| policy\_version | The IAM policy version to use when generating the condensed policies. | string | `"2012-10-17"` | no |
 | s3\_full\_access | Bit indicating whether to create a policy to allow full access to a bucket \(including modifying and deleting the bucket\) | string | `"false"` | no |
 | s3\_full\_access\_buckets | A list of S3 buckets to create policies to allow full access to | list | `<list>` | no |
 | s3\_list | Bit indicating whether to create a policy to allow listing buckets \(this is automatically added if any other access to buckets is granted\) | string | `"false"` | no |
