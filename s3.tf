@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "s3_readonly" {
       "s3:Get*",
     ]
 
-    resources = "${concat(formatlist("%v", var.s3_read_buckets), formatlist("%v/*", var.s3_read_buckets))}"
+    resources = ["${concat(formatlist("%v", var.s3_read_buckets), formatlist("%v/*", var.s3_read_buckets))}"]
   }
 }
 
@@ -80,7 +80,7 @@ data "aws_iam_policy_document" "s3_write" {
       "s3:DeleteObject",
     ]
 
-    resources = "${concat(formatlist("%v", var.s3_write_buckets), formatlist("%v/*", var.s3_write_buckets))}"
+    resources = ["${concat(formatlist("%v", var.s3_write_buckets), formatlist("%v/*", var.s3_write_buckets))}"]
   }
 }
 
@@ -90,6 +90,6 @@ data "aws_iam_policy_document" "s3_full_access" {
   statement {
     sid       = "S3FullAccessBuckets"
     actions   = ["s3:*"]
-    resources = "${concat(formatlist("%v", var.s3_full_access_buckets), formatlist("%v/*", var.s3_full_access_buckets))}"
+    resources = ["${concat(formatlist("%v", var.s3_full_access_buckets), formatlist("%v/*", var.s3_full_access_buckets))}"]
   }
 }

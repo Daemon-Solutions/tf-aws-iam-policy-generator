@@ -64,7 +64,7 @@ data "aws_iam_policy_document" "sqs_readonly" {
       "sqs:ReceiveMessage",
     ]
 
-    resources = "${var.sqs_read_queues}"
+    resources = ["${var.sqs_read_queues}"]
   }
 }
 
@@ -81,7 +81,7 @@ data "aws_iam_policy_document" "sqs_write" {
       "sqs:DeleteMessageBatch",
     ]
 
-    resources = "${var.sqs_write_queues}"
+    resources = ["${var.sqs_write_queues}"]
   }
 }
 
@@ -91,6 +91,6 @@ data "aws_iam_policy_document" "sqs_full_access" {
   statement {
     sid       = "SQSFullAccessQueues"
     actions   = ["sqs:*"]
-    resources = "${var.sqs_full_access_queues}"
+    resources = ["${var.sqs_full_access_queues}"]
   }
 }
