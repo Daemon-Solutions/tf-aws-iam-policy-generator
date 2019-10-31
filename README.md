@@ -43,3 +43,4 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | Name | Description |
 |------|-------------|
 | policies | A list of 1 or more IAM Policy documents in JSON format. These should be used with the aws\_iam\_policy resource to create the policies for the user, group or role. |
+| policy\_count | The number of policies being returned. This is to help avoid the dreaded Terraform 'value cannot be computed'. |
