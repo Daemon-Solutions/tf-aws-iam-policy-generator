@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "lambda_list" {
   statement {
     sid = "PermissionToListLambdaRoles"
 
-    action = [
+    actions = [
       "iam:ListRoles",
     ]
 
@@ -151,7 +151,7 @@ data "aws_iam_policy_document" "lambda_full_access" {
   statement {
     sid = "LambdaFullAccess"
 
-    action = [
+    actions = [
       "lambda:*",
     ]
 
