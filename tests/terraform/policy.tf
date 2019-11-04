@@ -3,8 +3,19 @@ module "test_user_iam_policy" {
 
   policy_type = "group"
 
-  s3_readonly = "1"
-  s3_write    = "1"
+  apigateway_read = true
+
+  apigateway_read_apis = [
+    "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*",
+  ]
+
+  dynamodb_read = true
+
+  dynamodb_read_tables = [
+    "arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable",
+  ]
+
+  s3_read = true
 
   s3_read_buckets = [
     "arn:aws:s3:::test-bucket1",
@@ -29,6 +40,8 @@ module "test_user_iam_policy" {
     "arn:aws:s3:::test-bucket20",
   ]
 
+  s3_write = true
+
   s3_write_buckets = [
     "arn:aws:s3:::test-bucket1",
     "arn:aws:s3:::test-bucket2",
@@ -52,10 +65,10 @@ module "test_user_iam_policy" {
     "arn:aws:s3:::test-bucket20",
   ]
 
-  dynamodb_read = "1"
+  s3_full_access = "1"
 
-  dynamodb_read_tables = [
-    "arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable",
+  s3_full_access_buckets = [
+    "arn:aws:s3:::test-bucket1",
   ]
 }
 

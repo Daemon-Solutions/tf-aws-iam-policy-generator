@@ -11,6 +11,8 @@ test_dir = os.path.normpath(
     os.path.join(os.path.realpath(__file__), "..", "..", "terraform")
 )
 
+ignore_files = ['.gitignore', 'requirements.txt', 'Makefile', 'README.md']
+
 def hcl_get_statement_id_list():
     # Check that there are Sids (Statement IDs) for all statements in the module
     module_root_path = os.path.join(os.path.dirname(__file__), '..', '..')
@@ -21,7 +23,7 @@ def hcl_get_statement_id_list():
             if os.path.isdir(path):
                 continue
 
-            if os.path.split(path)[1] in ['requirements.txt', 'Makefile', 'README.md']:
+            if os.path.split(path)[1] in ignore_files:
                 continue
 
             with open(path, 'r') as tf_file:
@@ -48,11 +50,14 @@ def test_terraform_statements_sids_exists():
             if os.path.isdir(path):
                 continue
 
-            if os.path.split(path)[1] in ['requirements.txt', 'Makefile', 'README.md']:
+            if os.path.split(path)[1] in ignore_files:
                 continue
 
             with open(path, 'r') as tf_file:
-                hcl_obj = hcl.load(tf_file)
+                try:
+                    hcl_obj = hcl.load(tf_file)
+                except Exception as e:
+                    pytest.fail("reading hcl file: {} with error {}".format(path, e))
 
 
             if 'data' in hcl_obj:
