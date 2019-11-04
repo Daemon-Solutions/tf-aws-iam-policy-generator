@@ -3,7 +3,7 @@ variable "s3_list" {
   default     = false
 }
 
-variable "s3_readonly" {
+variable "s3_read" {
   description = "Bit indicating whether to create a policy to allow List/Get objects in a bucket"
   default     = false
 }
@@ -37,7 +37,7 @@ variable "s3_full_access_buckets" {
 }
 
 data "aws_iam_policy_document" "s3_list" {
-  count = "${var.s3_list || var.s3_readonly || var.s3_write || var.s3_full_access ? "1" : "0"}"
+  count = "${var.s3_list || var.s3_read || var.s3_write || var.s3_full_access ? "1" : "0"}"
 
   statement {
     sid = "S3ListBuckets"
@@ -51,8 +51,8 @@ data "aws_iam_policy_document" "s3_list" {
   }
 }
 
-data "aws_iam_policy_document" "s3_readonly" {
-  count = "${var.s3_readonly}"
+data "aws_iam_policy_document" "s3_read" {
+  count = "${var.s3_read}"
 
   statement {
     sid = "S3ReadAccessBuckets"

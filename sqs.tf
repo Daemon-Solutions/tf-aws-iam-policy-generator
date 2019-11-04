@@ -3,7 +3,7 @@ variable "sqs_list" {
   default     = false
 }
 
-variable "sqs_readonly" {
+variable "sqs_read" {
   description = "Bit indicating whether to create a policy to allow list and read queue messages."
   default     = false
 }
@@ -37,7 +37,7 @@ variable "sqs_full_access_queues" {
 }
 
 data "aws_iam_policy_document" "sqs_list_queues" {
-  count = "${var.sqs_list || var.sqs_readonly || var.sqs_write || var.sqs_full_access ? "1" : "0"}"
+  count = "${var.sqs_list || var.sqs_read || var.sqs_write || var.sqs_full_access ? "1" : "0"}"
 
   statement {
     sid = "SQSListQueues"
@@ -54,8 +54,8 @@ data "aws_iam_policy_document" "sqs_list_queues" {
   }
 }
 
-data "aws_iam_policy_document" "sqs_readonly" {
-  count = "${var.sqs_readonly}"
+data "aws_iam_policy_document" "sqs_read" {
+  count = "${var.sqs_read}"
 
   statement {
     sid = "SQSReadAccessQueues"

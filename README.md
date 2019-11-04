@@ -34,15 +34,15 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | s3\_full\_access | Bit indicating whether to create a policy to allow full access to a bucket \(including modifying and deleting the bucket\) | string | `"false"` | no |
 | s3\_full\_access\_buckets | A list of S3 buckets to create policies to allow full access to | list | `<list>` | no |
 | s3\_list | Bit indicating whether to create a policy to allow listing buckets \(this is automatically added if any other access to buckets is granted\) | string | `"false"` | no |
+| s3\_read | Bit indicating whether to create a policy to allow List/Get objects in a bucket | string | `"false"` | no |
 | s3\_read\_buckets | A list of S3 buckets to create allow access to via the generated policies | list | `<list>` | no |
-| s3\_readonly | Bit indicating whether to create a policy to allow List/Get objects in a bucket | string | `"false"` | no |
 | s3\_write | Bit indicating whether to create a policy to allow write access to a buckets objects and their ACLs. | string | `"false"` | no |
 | s3\_write\_buckets | A list of S3 buckets to create policies to allow writing to | list | `<list>` | no |
 | sqs\_full\_access | Bit indicating whether to create a policy to allow full access to a SQS queue \(including modifying and deleting the queue\) | string | `"false"` | no |
 | sqs\_full\_access\_queues | A list of SQS queues to allow full access to | list | `<list>` | no |
 | sqs\_list | Bit indicating whether to create a policy to allow listing SQS queues \(this is automatically added if any other access to SQS queues is granted\) | string | `"false"` | no |
+| sqs\_read | Bit indicating whether to create a policy to allow list and read queue messages. | string | `"false"` | no |
 | sqs\_read\_queues | A list of SQS queues to allow read access to via the generated policies | list | `<list>` | no |
-| sqs\_readonly | Bit indicating whether to create a policy to allow list and read queue messages. | string | `"false"` | no |
 | sqs\_write | Bit indicating whether to create a policy to allow write access to a SQS queues and their messages. | string | `"false"` | no |
 | sqs\_write\_queues | A list of SQS queues to allow writing to | list | `<list>` | no |
 
