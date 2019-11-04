@@ -7,6 +7,8 @@ data "aws_iam_policy_document" "cloudcraft_access" {
   count = "${var.cloudcraft_access}"
 
   statement {
+    sid = "CloudcraftAccess"
+
     actions = [
       "apigateway:Get",
       "autoscaling:Describe*",
