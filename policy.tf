@@ -20,11 +20,11 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.lambda_write.*.json}",
     "${data.aws_iam_policy_document.s3_full_access.*.json}",
     "${data.aws_iam_policy_document.s3_list.*.json}",
-    "${data.aws_iam_policy_document.s3_readonly.*.json}",
+    "${data.aws_iam_policy_document.s3_read.*.json}",
     "${data.aws_iam_policy_document.s3_write.*.json}",
     "${data.aws_iam_policy_document.sqs_full_access.*.json}",
     "${data.aws_iam_policy_document.sqs_list_queues.*.json}",
-    "${data.aws_iam_policy_document.sqs_readonly.*.json}",
+    "${data.aws_iam_policy_document.sqs_read.*.json}",
     "${data.aws_iam_policy_document.sqs_write.*.json}",
   ]
 }
