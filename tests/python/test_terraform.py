@@ -108,7 +108,9 @@ def test_terraform():
     # Terraform state tests
     for module in tfstate['modules']:
         if module["path"] == ["root"]:
-            policy_json = json.loads(module["outputs"]["policies"]["value"][0]["policies"])
+            policies_json = []
+            for output_value in module["outputs"]["policies"]["value"]:
+                policies_json.append(json.loads(output_value["policies"]))
 
     # Get a list of all statement IDs
     statement_ids = hcl_get_statement_id_list()
@@ -119,8 +121,9 @@ def test_terraform():
         statement_ids_found[statement_id] = False
 
     # Check for existence in the policies
-    for statement in policy_json['Statement']:
-        statement_ids_found[statement['Sid']] = True
+    for policy in policies_json:
+        for statement in policy['Statement']:
+            statement_ids_found[statement['Sid']] = True
 
     # Assert that each are found
     for statement_id in statement_ids_found.keys():
