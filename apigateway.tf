@@ -1,5 +1,5 @@
 variable "apigateway_read" {
-  description = "Bit indicating whether to create a policy to allow read only access to APIGateway APIs"
+  description = "Boolean indicating whether to create a policy to allow read only access to APIGateway APIs"
   default     = false
 }
 
@@ -10,7 +10,7 @@ variable "apigateway_read_apis" {
 }
 
 variable "apigateway_write" {
-  description = "Bit indicating whether to create a policy to allow write access to APIGateway APIs"
+  description = "Boolean indicating whether to create a policy to allow write access to APIGateway APIs"
   type        = "string"
   default     = false
 }
@@ -22,7 +22,7 @@ variable "apigateway_write_apis" {
 }
 
 variable "apigateway_full_access" {
-  description = "Bit indicating whether to create a policy to allow full access to APIGateway APIs"
+  description = "Boolean indicating whether to create a policy to allow full access to APIGateway APIs"
   type        = "string"
   default     = false
 }

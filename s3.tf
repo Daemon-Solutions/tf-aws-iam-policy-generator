@@ -1,10 +1,10 @@
 variable "s3_list" {
-  description = "Bit indicating whether to create a policy to allow listing buckets (this is automatically added if any other access to buckets is granted)"
+  description = "Boolean indicating whether to create a policy to allow listing buckets (this is automatically added if any other access to buckets is granted)"
   default     = false
 }
 
 variable "s3_read" {
-  description = "Bit indicating whether to create a policy to allow List/Get objects in a bucket"
+  description = "Boolean indicating whether to create a policy to allow List/Get objects in a bucket"
   default     = false
 }
 
@@ -15,7 +15,7 @@ variable "s3_read_buckets" {
 }
 
 variable "s3_write" {
-  description = "Bit indicating whether to create a policy to allow write access to a buckets objects and their ACLs."
+  description = "Boolean indicating whether to create a policy to allow write access to a buckets objects and their ACLs."
   default     = false
 }
 
@@ -26,7 +26,7 @@ variable "s3_write_buckets" {
 }
 
 variable "s3_full_access" {
-  description = "Bit indicating whether to create a policy to allow full access to a bucket (including modifying and deleting the bucket)"
+  description = "Boolean indicating whether to create a policy to allow full access to a bucket (including modifying and deleting the bucket)"
   default     = false
 }
 

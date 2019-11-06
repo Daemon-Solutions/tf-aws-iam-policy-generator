@@ -1,10 +1,10 @@
 variable "dynamodb_list" {
-  description = "Bit indicating whether to create a policy to allow listing dynamodb tables (this is automatically added if any other access to dynamodb is granted)"
+  description = "Boolean indicating whether to create a policy to allow listing dynamodb tables (this is automatically added if any other access to dynamodb is granted)"
   default     = false
 }
 
 variable "dynamodb_read" {
-  description = "Bit indicating whether to create a policy to allow read only access to dynamodb tables"
+  description = "Boolean indicating whether to create a policy to allow read only access to dynamodb tables"
   default     = false
 }
 
@@ -15,7 +15,7 @@ variable "dynamodb_read_tables" {
 }
 
 variable "dynamodb_write" {
-  description = "Bit indicating whether to create a policy to allow write access to dynamodb tables"
+  description = "Boolean indicating whether to create a policy to allow write access to dynamodb tables"
   default     = false
 }
 
@@ -26,7 +26,7 @@ variable "dynamodb_write_tables" {
 }
 
 variable "dynamodb_full_access" {
-  description = "Bit indicating whether to create a policy to allow full access to dynamodb tables"
+  description = "Boolean indicating whether to create a policy to allow full access to dynamodb tables"
   default     = false
 }
 

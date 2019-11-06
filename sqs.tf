@@ -1,10 +1,10 @@
 variable "sqs_list" {
-  description = "Bit indicating whether to create a policy to allow listing SQS queues (this is automatically added if any other access to SQS queues is granted)"
+  description = "Boolean indicating whether to create a policy to allow listing SQS queues (this is automatically added if any other access to SQS queues is granted)"
   default     = false
 }
 
 variable "sqs_read" {
-  description = "Bit indicating whether to create a policy to allow list and read queue messages."
+  description = "Boolean indicating whether to create a policy to allow list and read queue messages."
   default     = false
 }
 
@@ -15,7 +15,7 @@ variable "sqs_read_queues" {
 }
 
 variable "sqs_write" {
-  description = "Bit indicating whether to create a policy to allow write access to a SQS queues and their messages."
+  description = "Boolean indicating whether to create a policy to allow write access to a SQS queues and their messages."
   default     = false
 }
 
@@ -26,7 +26,7 @@ variable "sqs_write_queues" {
 }
 
 variable "sqs_full_access" {
-  description = "Bit indicating whether to create a policy to allow full access to a SQS queue (including modifying and deleting the queue)"
+  description = "Boolean indicating whether to create a policy to allow full access to a SQS queue (including modifying and deleting the queue)"
   default     = false
 }
 
