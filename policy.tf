@@ -8,7 +8,6 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.apigateway_read.*.json}",
     "${data.aws_iam_policy_document.apigateway_write.*.json}",
     "${data.aws_iam_policy_document.cloudcraft_access.*.json}",
-    "${data.aws_iam_policy_document.cloudcraft_access.*.json}",
     "${data.aws_iam_policy_document.dynamodb_full_access.*.json}",
     "${data.aws_iam_policy_document.dynamodb_list.*.json}",
     "${data.aws_iam_policy_document.dynamodb_read.*.json}",
