@@ -41,6 +41,12 @@ variable "lambda_full_access" {
   default     = false
 }
 
+variable "lambda_full_access_functions" {
+  description = "List of functions to grant full access access to"
+  type        = "list"
+  default     = []
+}
+
 data "aws_iam_policy_document" "lambda_list" {
   count = "${var.lambda_list || var.lambda_read || var.lambda_invoke || var.lambda_write || var.lambda_full_access ? "1" : "0"}"
 
@@ -141,7 +147,7 @@ data "aws_iam_policy_document" "lambda_write" {
       "lambda:UpdateFunctionConfiguration",
     ]
 
-    resource = ["${var.lambda_write_functions}"]
+    resources = ["${var.lambda_write_functions}"]
   }
 }
 
@@ -155,6 +161,6 @@ data "aws_iam_policy_document" "lambda_full_access" {
       "lambda:*",
     ]
 
-    resources = ["*"]
+    resources = ["${var.lambda_full_access_functions}"]
   }
 }

@@ -3,17 +3,37 @@ module "test_user_iam_policy" {
 
   policy_type = "group"
 
-  apigateway_read = true
+  apigateway_read      = true
+  apigateway_read_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
 
-  apigateway_read_apis = [
-    "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*",
-  ]
+  apigateway_write      = true
+  apigateway_write_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
 
-  dynamodb_read = true
+  apigateway_full_access      = true
+  apigateway_full_access_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
 
-  dynamodb_read_tables = [
-    "arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable",
-  ]
+  cloudcraft_access = true
+
+  dynamodb_read        = true
+  dynamodb_read_tables = ["arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable"]
+
+  dynamodb_write        = true
+  dynamodb_write_tables = ["arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable"]
+
+  dynamodb_full_access        = true
+  dynamodb_full_access_tables = ["arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable"]
+
+  lambda_read           = true
+  lambda_read_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+
+  lambda_invoke           = true
+  lambda_invoke_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+
+  lambda_write           = true
+  lambda_write_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+
+  lambda_full_access           = true
+  lambda_full_access_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
 
   s3_read = true
 
@@ -65,11 +85,18 @@ module "test_user_iam_policy" {
     "arn:aws:s3:::test-bucket20",
   ]
 
-  s3_full_access = "1"
+  s3_full_access         = "1"
+  s3_full_access_buckets = ["arn:aws:s3:::test-bucket1"]
 
-  s3_full_access_buckets = [
-    "arn:aws:s3:::test-bucket1",
-  ]
+  sqs_list        = true
+  sqs_read        = true
+  sqs_read_queues = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:myqueue"]
+
+  sqs_write        = true
+  sqs_write_queues = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:myqueue"]
+
+  sqs_full_access        = true
+  sqs_full_access_queues = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:myqueue"]
 }
 
 resource "aws_iam_policy" "user_policies" {
