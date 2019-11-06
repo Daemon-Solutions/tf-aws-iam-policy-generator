@@ -20,7 +20,9 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | dynamodb\_read\_tables | A list of dynamodb tables to allow reading from | list | `<list>` | no |
 | dynamodb\_write | Boolean indicating whether to create a policy to allow write access to dynamodb tables | string | `"false"` | no |
 | dynamodb\_write\_tables | A list of dynamodb tables to allow writing to | list | `<list>` | no |
+| iam\_change\_password | Boolean indicating whether to give the policy the IAM:ChangePassword permission | string | `"false"` | no |
 | lambda\_full\_access | Whether to grant full access to the Lambda. | string | `"false"` | no |
+| lambda\_full\_access\_functions | List of functions to grant full access access to | list | `<list>` | no |
 | lambda\_invoke | Whether to grant access to invoke Lambda functions | string | `"false"` | no |
 | lambda\_invoke\_functions | List of functions to grant invoke access to | list | `<list>` | no |
 | lambda\_list | Whether to create a policy to allowing listing of Lambda functions. | string | `"false"` | no |

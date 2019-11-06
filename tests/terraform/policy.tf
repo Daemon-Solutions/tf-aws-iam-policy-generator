@@ -97,6 +97,8 @@ module "test_user_iam_policy" {
 
   sqs_full_access        = true
   sqs_full_access_queues = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:myqueue"]
+
+  iam_change_password = true
 }
 
 resource "aws_iam_policy" "user_policies" {

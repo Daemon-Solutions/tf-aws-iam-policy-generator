@@ -12,6 +12,7 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.dynamodb_list.*.json}",
     "${data.aws_iam_policy_document.dynamodb_read.*.json}",
     "${data.aws_iam_policy_document.dynamodb_write.*.json}",
+    "${data.aws_iam_policy_document.iam_change_password.*.json}",
     "${data.aws_iam_policy_document.lambda_full_access.*.json}",
     "${data.aws_iam_policy_document.lambda_invoke.*.json}",
     "${data.aws_iam_policy_document.lambda_list.*.json}",
