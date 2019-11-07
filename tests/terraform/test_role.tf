@@ -1,4 +1,5 @@
 resource "aws_iam_role" "test_role" {
+  name_prefix        = "policygen-test-role"
   assume_role_policy = "${data.aws_iam_policy_document.test_role_assume_policy.json}"
 }
 
