@@ -73,6 +73,16 @@ data "aws_iam_policy_document" "lambda_list" {
 
     resources = ["*"]
   }
+
+  statement {
+    sid = "PermissionToListLambdaCloudwatchEventRules"
+
+    actions = [
+      "events:ListRules",
+    ]
+
+    resources = ["*"]
+  }
 }
 
 data "aws_iam_policy_document" "lambda_read" {
