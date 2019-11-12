@@ -75,10 +75,19 @@ data "aws_iam_policy_document" "lambda_list" {
   }
 
   statement {
-    sid = "PermissionToListLambdaCloudwatchEventRules"
+    sid = "LambdaConsolePermissions"
 
     actions = [
+      "cloudformation:DescribeStackResources",
+      "cloudformation:DescribeStacks",
       "events:ListRules",
+      "events:ListTargetsByRule",
+      "iam:GetPolicy",
+      "iam:GetPolicyVersion",
+      "iam:GetRole",
+      "iam:ListAttachedRolePolicies",
+      "iam:ListRolePolicies",
+      "kms:ListAliases",
     ]
 
     resources = ["*"]
