@@ -47,6 +47,13 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | sqs\_read\_queues | A list of SQS queues to allow read access to via the generated policies | list | `<list>` | no |
 | sqs\_write | Boolean indicating whether to create a policy to allow write access to a SQS queues and their messages. | string | `"false"` | no |
 | sqs\_write\_queues | A list of SQS queues to allow writing to | list | `<list>` | no |
+| ssm\_parameters\_full\_access | Whether to grant full access to the System Manager Parameter Store Parameters. | string | `"false"` | no |
+| ssm\_parameters\_full\_access\_params | List of System Manager Parameter Store Parameters to grant full access access to | list | `<list>` | no |
+| ssm\_parameters\_list | Whether to create a policy to allowing listing of Systems Manager Parameter Store Parameters. | string | `"false"` | no |
+| ssm\_parameters\_read | Whether to create a policy to allow reading of specified Systems Manager Parameter Store Parameters. | string | `"false"` | no |
+| ssm\_parameters\_read\_params | List of System Manager Parameter Store Parameters to grant read access to | list | `<list>` | no |
+| ssm\_parameters\_write | Whether to grant write access to specified Systems Manager Parameter Store Parameters. | string | `"false"` | no |
+| ssm\_parameters\_write\_params | List of System Manager Parameter Store Parameters to grant write access to | list | `<list>` | no |
 
 ## Outputs
 
