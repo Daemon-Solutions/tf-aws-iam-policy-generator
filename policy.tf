@@ -26,5 +26,9 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.sqs_list_queues.*.json}",
     "${data.aws_iam_policy_document.sqs_read.*.json}",
     "${data.aws_iam_policy_document.sqs_write.*.json}",
+    "${data.aws_iam_policy_document.ssm_parameters_full_access.*.json}",
+    "${data.aws_iam_policy_document.ssm_parameters_list.*.json}",
+    "${data.aws_iam_policy_document.ssm_parameters_read.*.json}",
+    "${data.aws_iam_policy_document.ssm_parameters_write.*.json}",
   ]
 }

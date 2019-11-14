@@ -24,13 +24,13 @@ module "test_user_iam_policy" {
   dynamodb_full_access_tables = ["arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable"]
 
   lambda_read           = true
-  lambda_read_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+  lambda_read_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:findpuzzle"]
 
   lambda_invoke           = true
-  lambda_invoke_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+  lambda_invoke_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:findpuzzle"]
 
   lambda_write           = true
-  lambda_write_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
+  lambda_write_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:findpuzzle"]
 
   lambda_full_access           = true
   lambda_full_access_functions = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:test"]
@@ -97,6 +97,15 @@ module "test_user_iam_policy" {
 
   sqs_full_access        = true
   sqs_full_access_queues = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:myqueue"]
+
+  ssm_parameters_read        = true
+  ssm_parameters_read_params = ["arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/data/data-miner/mysql_password"]
+
+  ssm_parameters_write        = true
+  ssm_parameters_write_params = ["arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/test"]
+
+  ssm_parameters_full_access        = true
+  ssm_parameters_full_access_params = ["arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/test"]
 
   iam_change_password = true
 }
