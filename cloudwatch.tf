@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "cloudwatch_readonly_access" {
       "sns:List*",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["*"]
   }
 }
 
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "iam:GetRole",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["*"]
   }
 
   statement {
@@ -60,7 +60,6 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
 
     resources = [
       "arn:aws:iam::*:role/aws-service-role/events.amazonaws.com/AWSServiceRoleForCloudWatchEvents*",
-      "arn:aws:iam::*:user/$${aws:username}",
     ]
 
     condition {
