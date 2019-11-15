@@ -14,7 +14,9 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | apigateway\_write\_apis | A list of APIGateway APIs to allow writing to | list | `<list>` | no |
 | cloudcraft\_access | Whether to add a statement with the permissions required for Cloudcraft to access the account | string | `"false"` | no |
 | cloudwatch\_full\_access | Boolean indicating whether to give the policy the CloudWatchFullAccess permission | string | `"false"` | no |
+| cloudwatch\_full\_access\_list | A list of CloudWatch resources the user full access too | list | `<list>` | no |
 | cloudwatch\_read | Boolean indicating whether to give the policy the CloudWatchReadOnlyAccess permission | string | `"false"` | no |
+| cloudwatch\_read\_list | A list of CloudWatch resources the user is allowed read only access too | list | `<list>` | no |
 | dynamodb\_full\_access | Boolean indicating whether to create a policy to allow full access to dynamodb tables | string | `"false"` | no |
 | dynamodb\_full\_access\_tables | A list of dynamodb tables to allow full access to | list | `<list>` | no |
 | dynamodb\_list | Boolean indicating whether to create a policy to allow listing dynamodb tables (this is automatically added if any other access to dynamodb is granted) | string | `"false"` | no |

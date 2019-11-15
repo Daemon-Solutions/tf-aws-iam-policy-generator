@@ -3,9 +3,21 @@ variable "cloudwatch_read" {
   default     = false
 }
 
+variable "cloudwatch_read_list" {
+  description = "A list of CloudWatch resources the user is allowed read only access too"
+  type        = "list"
+  default     = []
+}
+
 variable "cloudwatch_full_access" {
   description = "Boolean indicating whether to give the policy the CloudWatchFullAccess permission"
   default     = false
+}
+
+variable "cloudwatch_full_access_list" {
+  description = "A list of CloudWatch resources the user full access too"
+  type        = "list"
+  default     = []
 }
 
 data "aws_iam_policy_document" "cloudwatch_readonly_access" {
@@ -28,7 +40,7 @@ data "aws_iam_policy_document" "cloudwatch_readonly_access" {
       "sns:List*",
     ]
 
-    resources = ["*"]
+    resources = ["${var.cloudwatch_read_list}"]
   }
 }
 
@@ -48,7 +60,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "iam:GetRole",
     ]
 
-    resources = ["*"]
+    resources = ["${var.cloudwatch_full_access_list}"]
   }
 
   statement {
