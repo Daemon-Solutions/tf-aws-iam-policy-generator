@@ -23,5 +23,5 @@ README.md: ## Updates README.md using terraform-docs
 
 .PHONY: tests
 tests: ## Runs tests
-	@if ! python -c "import pytest" &>/dev/null; then echo "The tests require pytest. Please install pytest and re run."; exit 1; fi
+	@if ! python3 -c "import pytest" &>/dev/null; then echo "The tests require pytest. Please install pytest and re run."; exit 1; fi
 	@cd tests/python && pytest -v

@@ -14,6 +14,10 @@ module "test_user_iam_policy" {
 
   cloudcraft_access = true
 
+  cloudwatch_read = true
+
+  cloudwatch_full_access = true
+
   dynamodb_read        = true
   dynamodb_read_tables = ["arn:aws:dynamodb:eu-west-1:${data.aws_caller_identity.current.account_id}:table/mytable"]
 
