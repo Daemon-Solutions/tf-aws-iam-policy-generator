@@ -135,6 +135,36 @@ module "test_user_iam_policy" {
   iam_get_account_password_policy = true
 
   iam_manage_access_key = true
+
+  iam_manage_mfa = true
+
+  iam_list_users = true
+
+  iam_list_groups_for_user = true
+
+  iam_read = true
+  iam_read_only_resources = ["arn:aws:iam::*:*"]
+
+  kinesis_read = true
+  kinesis_read_only_resources = ["arn:aws:kinesis::*:*"]
+
+  kinesis_full_access = true
+  kinesis_full_access_resources = ["arn:aws:kinesis::*:*"]
+
+  es_read = true
+  es_read_only_resources = ["arn:aws:es::*:*"]
+
+  es_full_access = true
+  es_full_access_resources = ["arn:aws:es::*:*"]
+
+  ses_read = true
+  ses_read_only_resources = ["arn:aws:ses::*:*"]
+
+  ses_full_access = true
+  ses_full_access_resources = ["arn:aws:ses::*:*"]
+
+  ses_send_raw_email = true
+  ses_send_raw_email_resources = ["arn:aws:ses::*:*"]
 }
 
 resource "aws_iam_policy" "user_policies" {

@@ -28,9 +28,22 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | ec2\_full\_access\_instances | A list of EC2 instances which the user has Full Access too. | list | `<list>` | no |
 | ec2\_read | Boolean indicating whether to give Read Only access to EC2 instances. | string | `"false"` | no |
 | ec2\_read\_instances | A list of EC2 instances which the user has Read Only access too. | list | `<list>` | no |
+| es\_full\_access | Boolean indicating whether to give Full Access to the ES Resources. | string | `"false"` | no |
+| es\_full\_access\_resources | A list of ES resources which the user has Full Access too. | list | `<list>` | no |
+| es\_read | Boolean indicating whether to give Read Only access to ES. | string | `"false"` | no |
+| es\_read\_only\_resources | A list of ES resources which the user has Read Only access too. | list | `<list>` | no |
 | iam\_change\_password | Boolean indicating whether to give the policy the IAM:ChangePassword permission | string | `"false"` | no |
 | iam\_get\_account\_password\_policy | Boolean indicating whether to give the policy the IAM:GetAccountPasswordPolicy permission | string | `"false"` | no |
+| iam\_list\_groups\_for\_user | Boolean indicating whether to give an IAM user the permissions to view their IAM Groups | string | `"false"` | no |
+| iam\_list\_users | Boolean indicating whether to give the permission to list all IAM User | string | `"false"` | no |
 | iam\_manage\_access\_key | Boolean indicating whether to give the policy the IAM:*AccessKey* permission | string | `"false"` | no |
+| iam\_manage\_mfa | Boolean indicating whether to give an IAM user the permissions to self-manage their MFA | string | `"false"` | no |
+| iam\_read | Boolean indicating whether to give an IAM user the permissions to view IAM in the AWS Console | string | `"false"` | no |
+| iam\_read\_only\_resources | A list of resources which has Read Only access to IAM | list | `<list>` | no |
+| kinesis\_full\_access | Boolean indicating whether to give Full Access to the Kinesis Resources. | string | `"false"` | no |
+| kinesis\_full\_access\_resources | A list of Kinesis resources which the user has Full Access too. | list | `<list>` | no |
+| kinesis\_read | Boolean indicating whether to give Read Only access to Kinesis. | string | `"false"` | no |
+| kinesis\_read\_only\_resources | A list of Kinesis resources which the user has Read Only access too. | list | `<list>` | no |
 | lambda\_full\_access | Whether to grant full access to the Lambda. | string | `"false"` | no |
 | lambda\_full\_access\_functions | List of functions to grant full access access to | list | `<list>` | no |
 | lambda\_invoke | Whether to grant access to invoke Lambda functions | string | `"false"` | no |
@@ -54,6 +67,12 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | s3\_read\_buckets | A list of S3 buckets to create allow access to via the generated policies | list | `<list>` | no |
 | s3\_write | Boolean indicating whether to create a policy to allow write access to a buckets objects and their ACLs. | string | `"false"` | no |
 | s3\_write\_buckets | A list of S3 buckets to create policies to allow writing to | list | `<list>` | no |
+| ses\_full\_access | Boolean indicating whether to give Full Access to the SES Resources. | string | `"false"` | no |
+| ses\_full\_access\_resources | A list of SES resources which the user has Full Access too. | list | `<list>` | no |
+| ses\_read | Boolean indicating whether to give Read Only access to SES. | string | `"false"` | no |
+| ses\_read\_only\_resources | A list of SES resources which the user has Read Only access too. | list | `<list>` | no |
+| ses\_send\_raw\_email | Boolean indicating whether to the sending of raw emails through SES. | string | `"false"` | no |
+| ses\_send\_raw\_email\_resources | A list of SES resources through which raw emails will be sent. | list | `<list>` | no |
 | sns\_full\_access | Boolean indicating whether to give Full Access to the SNS Topics. | string | `"false"` | no |
 | sns\_full\_access\_topics | A list of SNS Topics which the user has Full Access too. | list | `<list>` | no |
 | sns\_read | Boolean indicating whether to give Read Only access to SNS Topics. | string | `"false"` | no |
