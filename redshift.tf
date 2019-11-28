@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "ec2:DescribeInternetGateways",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = ["arn:aws:ec2:::*"]
   }
 
   statement {
@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = ["arn:aws:sns:::*"]
   }
 
   statement {
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = ["arn:aws:sns:::*"]
   }
 }
 
@@ -99,7 +99,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "ec2:DescribeInternetGateways",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = ["arn:aws:ec2:::*"]
   }
 
   statement {
@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = ["arn:aws:sns:::*"]
   }
 
   statement {
@@ -129,7 +129,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "cloudwatch:GetMetricData",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = ["arn:aws:cloudwatch:::*"]
   }
 
   statement {
@@ -143,7 +143,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "tag:TagResources",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = ["arn:aws:tag:::*"]
   }
 
   statement {
