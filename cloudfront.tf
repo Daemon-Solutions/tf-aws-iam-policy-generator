@@ -24,16 +24,52 @@ data "aws_iam_policy_document" "cloudfront_read_only" {
   count = "${var.cloudfront_read}"
 
   statement {
-    sid = "CloudFrontReadOnlyAccess"
+    sid = "CloudFrontReadOnlyListCertificates"
 
     actions = [
       "acm:ListCertificates",
-      "cloudfront:Get*",
-      "cloudfront:List*",
+    ]
+
+    resources = ["arn:aws:acm:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontReadOnlyListServerCertificates"
+
+    actions = [
       "iam:ListServerCertificates",
-      "route53:List*",
+    ]
+
+    resources = ["arn:aws:iam:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontReadOnlyWAFListGetWebACL"
+
+    actions = [
       "waf:ListWebACLs",
       "waf:GetWebACL",
+    ]
+
+    resources = ["arn:aws:waf:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontReadOnlyRoute53List"
+
+    actions = [
+      "route53:List*",
+    ]
+
+    resources = ["arn:aws:route53:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontReadOnlyAccess"
+
+    actions = [
+      "cloudfront:Get*",
+      "cloudfront:List*",
     ]
 
     resources = ["${var.cloudfront_read_only_resources}"]
