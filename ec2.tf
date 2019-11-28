@@ -40,7 +40,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "elasticloadbalancing:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = ["arn:aws:elasticloadbalancing:::*"]
   }
 
   statement {
@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "cloudwatch:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = ["arn:aws:cloudwatch:::*"]
   }
 
   statement {
@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "autoscaling:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = ["arn:aws:autoscaling:::*"]
   }
 }
 
@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "elasticloadbalancing:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = ["arn:aws:elasticloadbalancing:::*"]
   }
 
   statement {
@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "cloudwatch:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = ["arn:aws:cloudwatch:::*"]
   }
 
   statement {
@@ -106,7 +106,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "autoscaling:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = ["arn:aws:autoscaling:::*"]
   }
 
   statement {
@@ -114,7 +114,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
 
     actions = ["iam:CreateServiceLinkedRole"]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = ["arn:aws:iam:::*"]
 
     condition {
       test     = "StringLike"
