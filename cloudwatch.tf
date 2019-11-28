@@ -81,7 +81,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "autoscaling:Describe*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = ["arn:aws:autoscaling:::*"]
   }
 
   statement {
@@ -101,7 +101,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "logs:*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = ["arn:aws:logs:::*"]
   }
 
   statement {
@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "sns:*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = ["arn:aws:sns:::*"]
   }
 
   statement {
@@ -123,7 +123,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "iam:GetRole",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = ["arn:aws:iam:::*"]
   }
 
   statement {

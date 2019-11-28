@@ -44,26 +44,53 @@ data "aws_iam_policy_document" "cloudfront_full_access" {
   count = "${var.cloudfront_full_access}"
 
   statement {
-    sid = "CloudFrontFullAccess"
+    sid = "CloudFrontFullAccessListCertificates"
 
     actions = [
       "acm:ListCertificates",
-      "cloudfront:*",
+    ]
+
+    resources = ["arn:aws:acm:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontFullAccessListServerCertificates"
+
+    actions = [
       "iam:ListServerCertificates",
+    ]
+
+    resources = ["arn:aws:iam:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontFullAccessWAFListGetWebACL"
+
+    actions = [
       "waf:ListWebACLs",
       "waf:GetWebACL",
+    ]
+
+    resources = ["arn:aws:waf:::*"]
+  }
+
+  statement {
+    sid = "CloudFrontFullAccess"
+
+    actions = [
+      "cloudfront:*",
     ]
 
     resources = ["${var.cloudfront_full_access_resources}"]
   }
 
   statement {
-    sid = "CloudFrontListAllMyBuckets"
+    sid = "CloudFrontFullAccessListAllMyBuckets"
 
     actions = [
       "s3:ListAllMyBuckets",
     ]
 
-    resource = ["arn:aws:s3:::*"]
+    resources = ["arn:aws:s3:::*"]
   }
 }
