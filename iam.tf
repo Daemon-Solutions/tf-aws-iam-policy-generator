@@ -68,7 +68,7 @@ data "aws_iam_policy_document" "iam_list_users" {
       "iam:ListUsers",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}"]
   }
 }
 
@@ -82,7 +82,7 @@ data "aws_iam_policy_document" "iam_list_groups_for_user" {
       "iam:ListGroupsForUser",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}"]
   }
 }
 
@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "iam_change_password" {
       "iam:ChangePassword",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}"]
   }
 }
 
@@ -110,7 +110,7 @@ data "aws_iam_policy_document" "iam_get_account_password_policy" {
       "iam:GetAccountPasswordPolicy",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}"]
   }
 }
 
@@ -124,7 +124,7 @@ data "aws_iam_policy_document" "iam_manage_access_key" {
       "iam:*AccessKey*",
     ]
 
-    resources = ["arn:aws:iam::*:user/$${aws:username}"]
+    resources = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}"]
   }
 }
 
@@ -157,7 +157,7 @@ data "aws_iam_policy_document" "iam_manage_mfa" {
     ]
 
     resources = [
-      "arn:aws:iam::*:user/*",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/*",
     ]
   }
 
@@ -170,7 +170,7 @@ data "aws_iam_policy_document" "iam_manage_mfa" {
     ]
 
     resources = [
-      "arn:aws:iam::*:user/$${aws:username}",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/$${aws:username}",
     ]
   }
 
@@ -201,7 +201,7 @@ data "aws_iam_policy_document" "iam_manage_mfa" {
     ]
 
     resources = [
-      "arn:aws:iam::*:*",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:*",
     ]
   }
 }

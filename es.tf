@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "es_read_only" {
     actions = [
       "es:Describe*",
       "es:List*",
-      "es:Get*"
+      "es:Get*",
     ]
 
     resources = ["${var.es_read_only_resources}"]

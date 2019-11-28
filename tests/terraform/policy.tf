@@ -151,6 +151,12 @@ module "test_user_iam_policy" {
   kinesis_full_access = true
   kinesis_full_access_resources = ["arn:aws:kinesis::*:*"]
 
+  cloudfront_read = true
+  cloudfront_read_only_resources = ["arn:aws:cloudfront::*:*/*", "arn:aws:cloudfront::*:*"]
+
+  cloudfront_full_access = true
+  cloudfront_full_access_resources = ["arn:aws:cloudfront::*:*/*", "arn:aws:cloudfront::*:*"]
+
   es_read = true
   es_read_only_resources = ["arn:aws:es::*:*"]
 

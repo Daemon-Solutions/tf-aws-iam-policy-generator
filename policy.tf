@@ -25,6 +25,8 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.iam_read_only.*.json}",
     "${data.aws_iam_policy_document.kinesis_read_only.*.json}",
     "${data.aws_iam_policy_document.kinesis_full_access.*.json}",
+    "${data.aws_iam_policy_document.cloudfront_read_only.*.json}",
+    "${data.aws_iam_policy_document.cloudfront_full_access.*.json}",
     "${data.aws_iam_policy_document.es_read_only.*.json}",
     "${data.aws_iam_policy_document.es_full_access.*.json}",
     "${data.aws_iam_policy_document.ses_read_only.*.json}",

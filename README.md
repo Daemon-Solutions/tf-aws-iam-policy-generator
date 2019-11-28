@@ -13,6 +13,10 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | apigateway\_write | Boolean indicating whether to create a policy to allow write access to APIGateway APIs | string | `"false"` | no |
 | apigateway\_write\_apis | A list of APIGateway APIs to allow writing to | list | `<list>` | no |
 | cloudcraft\_access | Whether to add a statement with the permissions required for Cloudcraft to access the account | string | `"false"` | no |
+| cloudfront\_full\_access | Boolean indicating whether to give Full Access to the CloudFront Resources. | string | `"false"` | no |
+| cloudfront\_full\_access\_resources | A list of CloudFront resources which the user has Full Access too. | list | `<list>` | no |
+| cloudfront\_read | Boolean indicating whether to give Read Only access to CloudFront. | string | `"false"` | no |
+| cloudfront\_read\_only\_resources | A list of CloudFront resources which the user has Read Only access too. | list | `<list>` | no |
 | cloudwatch\_full\_access | Boolean indicating whether to give Full Access to CloudWatch. | string | `"false"` | no |
 | cloudwatch\_full\_access\_resources | A list of CloudWatch resources to which the user has Full Access too. | list | `<list>` | no |
 | cloudwatch\_read | Boolean indicating whether to give Read Only access to CloudWatch. | string | `"false"` | no |
