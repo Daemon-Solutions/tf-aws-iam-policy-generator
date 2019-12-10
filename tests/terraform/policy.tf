@@ -55,6 +55,9 @@ module "test_user_iam_policy" {
   sns_read        = true
   sns_read_topics = ["arn:aws:sns:::mytopic"]
 
+  sns_write        = true
+  sns_write_topics = ["arn:aws:sns:::mytopic"]
+
   sns_full_access        = true
   sns_full_access_topics = ["arn:aws:sns:::mydefaulttopic"]
 
