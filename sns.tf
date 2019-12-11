@@ -67,6 +67,8 @@ data "aws_iam_policy_document" "sns_read" {
 }
 
 data "aws_iam_policy_document" "sns_write" {
+  count = "${var.sns_write}"
+
   statement {
     sid = "SNSWriteTopics"
 
