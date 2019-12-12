@@ -1,9 +1,5 @@
-module "policy_condenser" {
-  source = "git::ssh://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v1.0.0"
-
-  policy_type = "${var.policy_type}"
-
-  input_policies = [
+locals {
+  generated_policies = [
     "${data.aws_iam_policy_document.apigateway_full_access.*.json}",
     "${data.aws_iam_policy_document.apigateway_read.*.json}",
     "${data.aws_iam_policy_document.apigateway_write.*.json}",
@@ -43,4 +39,16 @@ module "policy_condenser" {
     "${data.aws_iam_policy_document.ssm_parameters_read.*.json}",
     "${data.aws_iam_policy_document.ssm_parameters_write.*.json}",
   ]
+}
+
+module "policy_condenser" {
+  source = "git::ssh://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v1.0.0"
+
+  policy_type = "${var.policy_type}"
+
+  input_policies = "${concat(local.generated_policies, data.template_file.managed_policies.*.rendered)}"
+}
+
+output "managed_policies" {
+  value = "${jsonencode(data.template_file.managed_policies.*.rendered)}"
 }

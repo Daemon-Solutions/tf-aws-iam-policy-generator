@@ -11,7 +11,7 @@ test_dir = os.path.normpath(
     os.path.join(os.path.realpath(__file__), "..", "..", "terraform")
 )
 
-ignore_files = ['.gitignore', 'requirements.txt', 'Makefile', 'README.md']
+ignore_files = ['.gitignore', 'requirements.txt', 'Makefile', 'README.md', 'policy_fetcher.py']
 
 def hcl_get_statement_id_list():
     # Check that there are Sids (Statement IDs) for all statements in the module

@@ -138,6 +138,13 @@ module "test_user_iam_policy" {
   iam_get_account_password_policy = true
 
   iam_manage_access_key = true
+
+  managed_policies = true
+
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/AlexaForBusinessDeviceSetup:v1",
+    "arn:aws:iam::aws:policy/AmazonAppStreamReadOnlyAccess",
+  ]
 }
 
 resource "aws_iam_policy" "user_policies" {
@@ -147,4 +154,8 @@ resource "aws_iam_policy" "user_policies" {
 
 output "policies" {
   value = "${module.test_user_iam_policy.policies}"
+}
+
+output "managed_policies" {
+  value = "${module.test_user_iam_policy.managed_policies}"
 }
