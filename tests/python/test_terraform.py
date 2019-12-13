@@ -7,11 +7,14 @@ import pytest
 import subprocess
 import pdb
 
+class MissingStatementException(Exception):
+    pass
+
 test_dir = os.path.normpath(
     os.path.join(os.path.realpath(__file__), "..", "..", "terraform")
 )
 
-ignore_files = ['.gitignore', 'requirements.txt', 'Makefile', 'README.md']
+ignore_files = ['.gitignore', 'requirements.txt', 'Makefile', 'README.md', 'policy_fetcher.py']
 
 def hcl_get_statement_id_list():
     # Check that there are Sids (Statement IDs) for all statements in the module
@@ -74,14 +77,14 @@ def test_terraform_statements_sids_exists():
 def test_terraform():
     # Check Terraform version
     terraform_version_proc = subprocess.run(
-        ["terraform", "version", "-no-color"], cwd=test_dir, capture_output=True
+        ["terraform", "version", "-no-color"], cwd=test_dir, capture_output=True, check=True
     )
 
     assert str(terraform_version_proc.stdout).find('0.11.14') != -1
 
     # Run Terraform init
     terraform_init_proc = subprocess.run(
-        ["terraform", "init", "-no-color"], cwd=test_dir, capture_output=True
+        ["terraform", "init", "-no-color"], cwd=test_dir, capture_output=True, check=True
     )
     assert terraform_init_proc.returncode == 0
 
@@ -90,6 +93,7 @@ def test_terraform():
         ["terraform", "plan", "-no-color", "-detailed-exitcode", "-out", "test.tfplan"],
         cwd=test_dir,
         capture_output=False,
+        check=True
     )
     assert terraform_plan_proc.returncode == 2 or terraform_plan_proc.returncode == 0
 
@@ -98,6 +102,7 @@ def test_terraform():
         ["terraform", "apply", "test.tfplan"],
         cwd=test_dir,
         capture_output=False,
+        check=True
     )
     assert terraform_apply_proc.returncode == 0
 
@@ -123,14 +128,17 @@ def test_terraform():
     # Check for existence in the policies
     for policy in policies_json:
         for statement in policy['Statement']:
-            statement_ids_found[statement['Sid']] = True
+            try:
+                statement_ids_found[statement['Sid']] = True
+            except KeyError as e:  # Not all AWS managed policies have Sids.
+                pass
 
     # Assert that each are found
-    for statement_id in statement_ids_found.keys():
+    for statement_id in statement_ids_found:
         try:
-            if statement_ids_found[statement_id] == False:
-                raise Exception("Untested policies found please update the test Terraform code to test all the policies: {}".format(statement_ids_found))
-        except Exception as MissingStatementException:
+            if not statement_ids_found[statement_id]:
+                raise MissingStatementException("Untested policies found please update the test Terraform code to test all the policies: {}".format(statement_ids_found))
+        except MissingStatementException:
             pytest.fail("Untested policies found: {}".format(MissingStatementException))
 
     # Destroy to clean up the policies
@@ -138,6 +146,7 @@ def test_terraform():
         ["terraform", "destroy", "-no-color", "-auto-approve", "."],
         cwd=test_dir,
         capture_output=True,
+        check=True
     )
     assert terraform_destroy_proc.returncode == 0
 
