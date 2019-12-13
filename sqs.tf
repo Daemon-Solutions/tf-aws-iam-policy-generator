@@ -79,6 +79,7 @@ data "aws_iam_policy_document" "sqs_write" {
       "sqs:ChangeMessageVisibilityBatch",
       "sqs:DeleteMessage",
       "sqs:DeleteMessageBatch",
+      "sqs:PurgeQueue",
     ]
 
     resources = ["${var.sqs_write_queues}"]
