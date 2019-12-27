@@ -75,6 +75,8 @@ data "aws_iam_policy_document" "sqs_write" {
     sid = "SQSWriteAccessQueues"
 
     actions = [
+      "sqs:SendMessage",
+      "sqs:SendMessageBatch",
       "sqs:ChangeMessageVisibility",
       "sqs:ChangeMessageVisibilityBatch",
       "sqs:DeleteMessage",
