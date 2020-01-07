@@ -9,6 +9,17 @@ variable "apigateway_read_apis" {
   default     = []
 }
 
+variable "apigateway_post" {
+  description = "Boolean indicating whether to create a policy to allow post access to APIGateway APIs"
+  default     = false
+}
+
+variable "apigateway_post_apis" {
+  description = "A list of APIGateway APIs to allow posting to"
+  type        = "list"
+  default     = []
+}
+
 variable "apigateway_write" {
   description = "Boolean indicating whether to create a policy to allow write access to APIGateway APIs"
   type        = "string"
@@ -44,6 +55,20 @@ data "aws_iam_policy_document" "apigateway_read" {
     ]
 
     resources = ["${var.apigateway_read_apis}"]
+  }
+}
+
+data "aws_iam_policy_document" "apigateway_post" {
+  count = "${var.apigateway_post}"
+
+  statement {
+    sid = "APIGatewayPostAccessAPIs"
+
+    actions = [
+      "apigateway:POST",
+    ]
+
+    resources = ["${var.apigateway_post_apis}"]
   }
 }
 
