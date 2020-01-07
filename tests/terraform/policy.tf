@@ -142,8 +142,6 @@ module "test_user_iam_policy" {
 
   iam_manage_access_key = true
 
-  managed_policies = true
-
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/AlexaForBusinessDeviceSetup:v1",
     "arn:aws:iam::aws:policy/AmazonAppStreamReadOnlyAccess",
