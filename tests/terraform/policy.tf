@@ -6,6 +6,9 @@ module "test_user_iam_policy" {
   apigateway_read      = true
   apigateway_read_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
 
+  apigateway_post      = true
+  apigateway_post_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
+
   apigateway_write      = true
   apigateway_write_apis = ["arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:abcdefg/*"]
 
