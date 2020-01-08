@@ -1,15 +1,9 @@
-variable "managed_policies" {
-  description = "Boolean indicating whether you want to provide a list of existing policy document ARNs to merge into the created policies."
-  default     = false
-}
-
 variable "managed_policy_arns" {
   description = "A list of existing policy document ARNs to merge into the created policies. You can specify policy versions by appending ':VersionId' e.g. ':v1' to the ARN."
   default     = []
 }
 
 data "external" "policy_fetcher" {
-  count   = "${var.managed_policies ? 1 : 0}"
   program = ["python3", "${path.module}/policy_fetcher.py"]
 
   query = {

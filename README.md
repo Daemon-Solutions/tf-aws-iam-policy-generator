@@ -42,7 +42,6 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | lambda\_read\_functions | List of functions to grant read access to | list | `<list>` | no |
 | lambda\_write | Whether to grant write access to specified Lambda functions. | string | `"false"` | no |
 | lambda\_write\_functions | List of functions to grant write access to | list | `<list>` | no |
-| managed\_policies | Boolean indicating whether you want to provide a list of existing policy document ARNs to merge into the created policies. | string | `"false"` | no |
 | managed\_policy\_arns | A list of existing policy document ARNs to merge into the created policies. You can specify policy versions by appending ':VersionId' e.g. ':v1' to the ARN. | list | `<list>` | no |
 | policy\_type | The type of policy to generate. Valid types are: user, group, role. This is used to determine the maximum allowed length of the policy. | string | n/a | yes |
 | policy\_type\_length\_limit | A map containing maximum length of the various types of IAM policy (user, group or role). | map | `<map>` | no |
