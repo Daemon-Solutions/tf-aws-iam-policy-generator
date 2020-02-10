@@ -37,7 +37,7 @@ variable "sqs_full_access_queues" {
 }
 
 data "aws_iam_policy_document" "sqs_list_queues" {
-  count = "${var.sqs_list || var.sqs_read || var.sqs_write || var.sqs_full_access ? "1" : "0"}"
+  count = var.sqs_list || var.sqs_read || var.sqs_write || var.sqs_full_access ? "1" : "0"
 
   statement {
     sid = "SQSListQueues"
@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "sqs_list_queues" {
 }
 
 data "aws_iam_policy_document" "sqs_read" {
-  count = "${var.sqs_read}"
+  count = var.sqs_read
 
   statement {
     sid = "SQSReadAccessQueues"
@@ -64,12 +64,12 @@ data "aws_iam_policy_document" "sqs_read" {
       "sqs:ReceiveMessage",
     ]
 
-    resources = ["${var.sqs_read_queues}"]
+    resources = var.sqs_read_queues
   }
 }
 
 data "aws_iam_policy_document" "sqs_write" {
-  count = "${var.sqs_write}"
+  count = var.sqs_write
 
   statement {
     sid = "SQSWriteAccessQueues"
@@ -84,16 +84,16 @@ data "aws_iam_policy_document" "sqs_write" {
       "sqs:PurgeQueue",
     ]
 
-    resources = ["${var.sqs_write_queues}"]
+    resources = var.sqs_write_queues
   }
 }
 
 data "aws_iam_policy_document" "sqs_full_access" {
-  count = "${var.sqs_full_access}"
+  count = var.sqs_full_access
 
   statement {
     sid       = "SQSFullAccessQueues"
     actions   = ["sqs:*"]
-    resources = ["${var.sqs_full_access_queues}"]
+    resources = var.sqs_full_access_queues
   }
 }

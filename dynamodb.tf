@@ -37,7 +37,7 @@ variable "dynamodb_full_access_tables" {
 }
 
 data "aws_iam_policy_document" "dynamodb_list" {
-  count = "${var.dynamodb_list || var.dynamodb_read || var.dynamodb_write || var.dynamodb_full_access ? "1" : "0"}"
+  count = var.dynamodb_list || var.dynamodb_read || var.dynamodb_write || var.dynamodb_full_access ? "1" : "0"
 
   statement {
     sid    = "DynamoDBListAndDescribeTables"
@@ -55,7 +55,7 @@ data "aws_iam_policy_document" "dynamodb_list" {
 }
 
 data "aws_iam_policy_document" "dynamodb_read" {
-  count = "${var.dynamodb_read}"
+  count = var.dynamodb_read
 
   statement {
     sid = "DynamoDBReadOnlyTableAccess"
@@ -69,12 +69,12 @@ data "aws_iam_policy_document" "dynamodb_read" {
       "dynamodb:Scan",
     ]
 
-    resources = ["${var.dynamodb_read_tables}"]
+    resources = var.dynamodb_read_tables
   }
 }
 
 data "aws_iam_policy_document" "dynamodb_write" {
-  count = "${var.dynamodb_write}"
+  count = var.dynamodb_write
 
   statement {
     sid = "DynamoDBWriteTableAccess"
@@ -88,14 +88,12 @@ data "aws_iam_policy_document" "dynamodb_write" {
 
     effect = "Allow"
 
-    resources = [
-      "${var.dynamodb_write_tables}",
-    ]
+    resources = var.dynamodb_write_tables
   }
 }
 
 data "aws_iam_policy_document" "dynamodb_full_access" {
-  count = "${var.dynamodb_full_access}"
+  count = var.dynamodb_full_access
 
   statement {
     sid = "DynamoDBFullAccessTables"
@@ -106,8 +104,6 @@ data "aws_iam_policy_document" "dynamodb_full_access" {
 
     effect = "Allow"
 
-    resources = [
-      "${var.dynamodb_full_access_tables}",
-    ]
+    resources = var.dynamodb_full_access_tables
   }
 }

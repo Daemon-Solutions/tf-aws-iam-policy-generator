@@ -48,7 +48,7 @@ variable "lambda_full_access_functions" {
 }
 
 data "aws_iam_policy_document" "lambda_list" {
-  count = "${var.lambda_list || var.lambda_read || var.lambda_invoke || var.lambda_write || var.lambda_full_access ? "1" : "0"}"
+  count = var.lambda_list || var.lambda_read || var.lambda_invoke || var.lambda_write || var.lambda_full_access ? "1" : "0"
 
   statement {
     sid = "LambdaListAndDescribeFunctions"
@@ -95,7 +95,7 @@ data "aws_iam_policy_document" "lambda_list" {
 }
 
 data "aws_iam_policy_document" "lambda_read" {
-  count = "${var.lambda_read}"
+  count = var.lambda_read
 
   statement {
     sid = "LambdaReadFunctions"
@@ -111,12 +111,12 @@ data "aws_iam_policy_document" "lambda_read" {
       "lambda:ListVersionsByFunction",
     ]
 
-    resources = ["${var.lambda_read_functions}"]
+    resources = var.lambda_read_functions
   }
 }
 
 data "aws_iam_policy_document" "lambda_invoke" {
-  count = "${var.lambda_invoke}"
+  count = var.lambda_invoke
 
   statement {
     sid = "PermissionToInvokeFunction"
@@ -126,12 +126,12 @@ data "aws_iam_policy_document" "lambda_invoke" {
       "lambda:InvokeFunction",
     ]
 
-    resources = ["${var.lambda_invoke_functions}"]
+    resources = var.lambda_invoke_functions
   }
 }
 
 data "aws_iam_policy_document" "lambda_write" {
-  count = "${var.lambda_write}"
+  count = var.lambda_write
 
   statement {
     sid = "LambdaPermissionToPassRole"
@@ -166,12 +166,12 @@ data "aws_iam_policy_document" "lambda_write" {
       "lambda:UpdateFunctionConfiguration",
     ]
 
-    resources = ["${var.lambda_write_functions}"]
+    resources = var.lambda_write_functions
   }
 }
 
 data "aws_iam_policy_document" "lambda_full_access" {
-  count = "${var.lambda_full_access}"
+  count = var.lambda_full_access
 
   statement {
     sid = "LambdaFullAccess"
@@ -180,6 +180,6 @@ data "aws_iam_policy_document" "lambda_full_access" {
       "lambda:*",
     ]
 
-    resources = ["${var.lambda_full_access_functions}"]
+    resources = var.lambda_full_access_functions
   }
 }

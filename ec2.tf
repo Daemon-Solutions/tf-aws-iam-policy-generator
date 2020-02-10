@@ -21,7 +21,7 @@ variable "ec2_full_access_instances" {
 }
 
 data "aws_iam_policy_document" "ec2_read" {
-  count = "${var.ec2_read}"
+  count = var.ec2_read
 
   statement {
     sid = "EC2ReadOnlyDescribe"
@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "ec2:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = var.ec2_read_instances
   }
 
   statement {
@@ -40,7 +40,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "elasticloadbalancing:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = var.ec2_read_instances
   }
 
   statement {
@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "ec2_read" {
       "cloudwatch:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = var.ec2_read_instances
   }
 
   statement {
@@ -62,12 +62,12 @@ data "aws_iam_policy_document" "ec2_read" {
       "autoscaling:Describe*",
     ]
 
-    resources = ["${var.ec2_read_instances}"]
+    resources = var.ec2_read_instances
   }
 }
 
 data "aws_iam_policy_document" "ec2_full_access" {
-  count = "${var.ec2_full_access}"
+  count = var.ec2_full_access
 
   statement {
     sid = "EC2FullAccess"
@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "ec2:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = var.ec2_full_access_instances
   }
 
   statement {
@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "elasticloadbalancing:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = var.ec2_full_access_instances
   }
 
   statement {
@@ -96,7 +96,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "cloudwatch:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = var.ec2_full_access_instances
   }
 
   statement {
@@ -106,7 +106,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
       "autoscaling:*",
     ]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = var.ec2_full_access_instances
   }
 
   statement {
@@ -114,7 +114,7 @@ data "aws_iam_policy_document" "ec2_full_access" {
 
     actions = ["iam:CreateServiceLinkedRole"]
 
-    resources = ["${var.ec2_full_access_instances}"]
+    resources = var.ec2_full_access_instances
 
     condition {
       test     = "StringLike"

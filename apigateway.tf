@@ -45,7 +45,7 @@ variable "apigateway_full_access_apis" {
 }
 
 data "aws_iam_policy_document" "apigateway_read" {
-  count = "${var.apigateway_read}"
+  count = var.apigateway_read
 
   statement {
     sid = "APIGatewayReadOnlyAccessAPIs"
@@ -54,12 +54,12 @@ data "aws_iam_policy_document" "apigateway_read" {
       "apigateway:GET",
     ]
 
-    resources = ["${var.apigateway_read_apis}"]
+    resources = var.apigateway_read_apis
   }
 }
 
 data "aws_iam_policy_document" "apigateway_post" {
-  count = "${var.apigateway_post}"
+  count = var.apigateway_post
 
   statement {
     sid = "APIGatewayPostAccessAPIs"
@@ -68,12 +68,12 @@ data "aws_iam_policy_document" "apigateway_post" {
       "apigateway:POST",
     ]
 
-    resources = ["${var.apigateway_post_apis}"]
+    resources = var.apigateway_post_apis
   }
 }
 
 data "aws_iam_policy_document" "apigateway_write" {
-  count = "${var.apigateway_write}"
+  count = var.apigateway_write
 
   statement {
     sid = "APIGatewayWriteAccessAPIs"
@@ -87,14 +87,12 @@ data "aws_iam_policy_document" "apigateway_write" {
       "apigateway:UpdateRestApiPolicy",
     ]
 
-    resources = [
-      "${var.apigateway_write_apis}",
-    ]
+    resources = var.apigateway_write_apis
   }
 }
 
 data "aws_iam_policy_document" "apigateway_full_access" {
-  count = "${var.apigateway_full_access}"
+  count = var.apigateway_full_access
 
   statement {
     sid = "APIGatewayFullAccessAPIs"
@@ -103,8 +101,6 @@ data "aws_iam_policy_document" "apigateway_full_access" {
       "apigateway:*",
     ]
 
-    resources = [
-      "${var.apigateway_full_access_apis}",
-    ]
+    resources = var.apigateway_full_access_apis
   }
 }
