@@ -43,7 +43,7 @@ locals {
 }
 
 module "policy_condenser" {
-  source = "git::https://git@gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v1.0.0"
+  source = "git::https://gitlab.com/claranet-pcp/terraform/aws/tf-aws-iam-policy-condenser.git?ref=v1.0.0"
 
   policy_type = "${var.policy_type}"
 
