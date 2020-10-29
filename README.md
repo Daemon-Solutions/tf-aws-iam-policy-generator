@@ -6,6 +6,8 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| apigateway\_invoke | Boolean indicating whether to allow Invoke and Manage to APIGateway | `"false"` | no |
+| apigateway\_invoke\_apis | A list of APIGateway APIs to allow Invoke and Manage | list | `<list>` | no |
 | apigateway\_full\_access | Boolean indicating whether to create a policy to allow full access to APIGateway APIs | string | `"false"` | no |
 | apigateway\_full\_access\_apis | A list of APIGateway APIs to allow full access to | list | `<list>` | no |
 | apigateway\_post | Boolean indicating whether to create a policy to allow post access to APIGateway APIs | string | `"false"` | no |
