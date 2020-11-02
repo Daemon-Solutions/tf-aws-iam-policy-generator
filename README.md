@@ -19,6 +19,8 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | cloudcraft\_access | Whether to add a statement with the permissions required for Cloudcraft to access the account | string | `"false"` | no |
 | cloudwatch\_full\_access | Boolean indicating whether to give Full Access to CloudWatch. | string | `"false"` | no |
 | cloudwatch\_full\_access\_resources | A list of CloudWatch resources to which the user has Full Access too. | list | `<list>` | no |
+| cloudwatch\_full\_access\_dashboard | Boolean indicating whether to give Read Only access to CloudWatch. | string | `"false"` | no |
+| cloudwatch\_full\_access\_dashboard\_resources | A list of Cloudwatch resources to which the user has Full Dashboard access. | list | `<list>` | no |
 | cloudwatch\_read | Boolean indicating whether to give Read Only access to CloudWatch. | string | `"false"` | no |
 | cloudwatch\_read\_only\_resources | A list of Cloudwatch resources to which the user has Read Only access too. | list | `<list>` | no |
 | dynamodb\_full\_access | Boolean indicating whether to create a policy to allow full access to dynamodb tables | string | `"false"` | no |

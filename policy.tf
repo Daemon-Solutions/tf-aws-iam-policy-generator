@@ -7,6 +7,7 @@ locals {
     "${data.aws_iam_policy_document.apigateway_write.*.json}",
     "${data.aws_iam_policy_document.cloudcraft_access.*.json}",
     "${data.aws_iam_policy_document.cloudwatch_full_access.*.json}",
+    "${data.aws_iam_policy_document.cloudwatch_full_access_dashboard.*.json}",
     "${data.aws_iam_policy_document.cloudwatch_read_only.*.json}",
     "${data.aws_iam_policy_document.dynamodb_full_access.*.json}",
     "${data.aws_iam_policy_document.dynamodb_list.*.json}",
