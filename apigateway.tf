@@ -32,6 +32,18 @@ variable "apigateway_write_apis" {
   default     = []
 }
 
+variable "apigateway_invoke" {
+  description = "Boolean indicating whether to allow Invoke and Manage to APIGateway"
+  type        = "string"
+  default     = false
+}
+
+variable "apigateway_invoke_apis" {
+  description = "A list of APIGateway APIs to allow Invoke and Manage"
+  type        = "list"
+  default     = []
+}
+
 variable "apigateway_full_access" {
   description = "Boolean indicating whether to create a policy to allow full access to APIGateway APIs"
   type        = "string"
@@ -89,6 +101,23 @@ data "aws_iam_policy_document" "apigateway_write" {
 
     resources = [
       "${var.apigateway_write_apis}",
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "apigateway_invoke" {
+  count = "${var.apigateway_invoke}"
+
+  statement {
+    sid = "InvokeAPI"
+
+    actions = [
+    "execute-api:Invoke",
+    "execute-api:ManageConnections",
+    ]
+
+    resources = [
+      "${var.apigateway_invoke_apis}",
     ]
   }
 }
