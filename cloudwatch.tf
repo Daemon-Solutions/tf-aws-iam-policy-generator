@@ -91,6 +91,8 @@ data "aws_iam_policy_document" "cloudwatch_full_access_dashboard" {
 
     actions = [
       "cloudwatch:*Dashboard*",
+      "logs:PutMetricFilter",
+      "logs:DeleteMetricFilter",
     ]
 
     resources = ["${var.cloudwatch_full_access_dashboard_resources}"]
