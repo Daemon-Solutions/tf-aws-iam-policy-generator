@@ -39,6 +39,11 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | iam\_change\_password | Boolean indicating whether to give the policy the IAM:ChangePassword permission | string | `"false"` | no |
 | iam\_get\_account\_password\_policy | Boolean indicating whether to give the policy the IAM:GetAccountPasswordPolicy permission | string | `"false"` | no |
 | iam\_manage\_access\_key | Boolean indicating whether to give the policy the IAM:*AccessKey* permission | string | `"false"` | no |
+| ecs\_list | Whether to create a policy to allowing listing of ECS Clusters. | string | `"false"` | no |
+| ecs\_read | Whether to create a policy to allow reading of specified ECS Cluster.. | string | `"false"` | no |
+| ecs\_read\_cluster | List of ECS to grant read access to | list | `<list>` | no |
+| ecs\_write | Whether to grant write access to specified ECS Cluster. | string | `"false"` | no |
+| ecs\_write\_cluster | List of ECS to grant write access to | list | `<list>` | no |
 | lambda\_full\_access | Whether to grant full access to the Lambda. | string | `"false"` | no |
 | lambda\_full\_access\_functions | List of functions to grant full access access to | list | `<list>` | no |
 | lambda\_invoke | Whether to grant access to invoke Lambda functions | string | `"false"` | no |
