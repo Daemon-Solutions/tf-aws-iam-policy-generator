@@ -21,6 +21,18 @@ variable "cloudwatch_full_access_dashboard_resources" {
   default     = []
 }
 
+variable "cloudwatch_full_alarm_access" {
+  description = "Boolean indicating whether to give Full access to CloudWatch Alarms."
+  type        = "string"
+  default     = false
+}
+
+variable "cloudwatch_full_alarm_access_resources" {
+  description = "A list of Cloudwatch Alarms resources to which the user has Full access."
+  type        = "list"
+  default     = []
+}
+
 variable "cloudwatch_full_access" {
   description = "Boolean indicating whether to give Full Access to CloudWatch."
   default     = false
@@ -97,9 +109,25 @@ data "aws_iam_policy_document" "cloudwatch_full_access_dashboard" {
 
     resources = ["${var.cloudwatch_full_access_dashboard_resources}"]
   }
-
 }
 
+data "aws_iam_policy_document" "cloudwatch_full_alarm_access" {
+  count = "${var.cloudwatch_full_access_dashboard}"
+
+  statement {
+    sid = "CloudWatchFullMetricsAccess"
+
+    actions = [
+      "cloudwatch:PutMetricAlarm",
+      "cloudwatch:DeleteAlarms",
+      "cloudwatch:PutMetricAlarm",
+      "cloudwatch:ListMetrics",
+      "cloudwatch:GetMetricStatistics",
+    ]
+
+    resources = ["${var.cloudwatch_full_alarm_access_resources}"]
+  }
+}
 
 data "aws_iam_policy_document" "cloudwatch_full_access" {
   count = "${var.cloudwatch_full_access}"

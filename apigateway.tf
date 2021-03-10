@@ -112,8 +112,8 @@ data "aws_iam_policy_document" "apigateway_invoke" {
     sid = "InvokeAPI"
 
     actions = [
-    "execute-api:Invoke",
-    "execute-api:ManageConnections",
+      "execute-api:Invoke",
+      "execute-api:ManageConnections",
     ]
 
     resources = [
