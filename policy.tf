@@ -39,6 +39,7 @@ locals {
     "${data.aws_iam_policy_document.sns_list.*.json}",
     "${data.aws_iam_policy_document.sns_read.*.json}",
     "${data.aws_iam_policy_document.sns_write.*.json}",
+    "${data.aws_iam_policy_document.pi_full_access.*.json}",
     "${data.aws_iam_policy_document.sqs_full_access.*.json}",
     "${data.aws_iam_policy_document.sqs_list_queues.*.json}",
     "${data.aws_iam_policy_document.sqs_read.*.json}",

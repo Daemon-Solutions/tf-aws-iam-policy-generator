@@ -77,6 +77,7 @@ A module similar to tf-aws-iam-instance-profile for generating IAM policies for 
 | sns\_read\_topics | A list of SNS Topics which the user has Read Only access too. | list | `<list>` | no |
 | sns\_write | Boolean indicating whether to create a policy to allow write access to a SNS topics. | string | `"false"` | no |
 | sns\_write\_topics | A list of SNS topics to create policies to allow writing to. | list | `<list>` | no |
+| pi\_full\_access | Boolean indicating whether to Provide Full PI RDS access | string | `"false"` | no |
 | sqs\_full\_access | Boolean indicating whether to create a policy to allow full access to a SQS queue (including modifying and deleting the queue) | string | `"false"` | no |
 | sqs\_full\_access\_queues | A list of SQS queues to allow full access to | list | `<list>` | no |
 | sqs\_list | Boolean indicating whether to create a policy to allow listing SQS queues (this is automatically added if any other access to SQS queues is granted) | string | `"false"` | no |
