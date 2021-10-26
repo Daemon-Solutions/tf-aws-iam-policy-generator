@@ -52,8 +52,7 @@ locals {
 }
 
 module "policy_condenser" {
-  #source = "git@github.com:Daemon-Solutions/tf-aws-iam-policy-condenser.git?ref=v1.0.0"
-  source = "/home/ivana/Projects/tf_modules/tf-aws-iam-policy-condenser"
+  source = "git@github.com:Daemon-Solutions/tf-aws-iam-policy-condenser.git?ref=v2.0.0"
 
   policy_type = var.policy_type
 
