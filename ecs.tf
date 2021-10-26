@@ -15,18 +15,18 @@ variable "ecs_write" {
 
 variable "ecs_read_cluster" {
   description = "List of ECS to grant read access to"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "ecs_write_cluster" {
   description = "List of ECS to grant write access to"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 data "aws_iam_policy_document" "ecs_list" {
-  count = "${var.ecs_list || var.ecs_read || var.ecs_write ? "1" : "0"}"
+  count = var.ecs_list || var.ecs_read || var.ecs_write ? "1" : "0"
 
   statement {
     sid = "ECSList"
@@ -41,7 +41,7 @@ data "aws_iam_policy_document" "ecs_list" {
 }
 
 data "aws_iam_policy_document" "ecs_read" {
-  count = "${var.ecs_read}"
+  count = var.ecs_read ? 1 : 0
 
   statement {
     sid = "ECSaReadCluster"
@@ -51,12 +51,12 @@ data "aws_iam_policy_document" "ecs_read" {
       "ecs:List*",
     ]
 
-    resources = ["${var.ecs_read_cluster}"]
+    resources = var.ecs_read_cluster
   }
 }
 
 data "aws_iam_policy_document" "ecs_write" {
-  count = "${var.ecs_write}"
+  count = var.ecs_write ? 1 : 0
 
   statement {
     sid = "ECSWriteAccess"
@@ -73,6 +73,6 @@ data "aws_iam_policy_document" "ecs_write" {
       "ecs:Submit*",
     ]
 
-    resources = ["${var.ecs_write_cluster}"]
+    resources = var.ecs_write_cluster
   }
 }

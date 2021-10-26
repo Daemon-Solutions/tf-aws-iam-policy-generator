@@ -4,17 +4,17 @@ variable "pi_full_access" {
 }
 
 data "aws_iam_policy_document" "pi_full_access" {
-  count = "${var.pi_full_access ? "1" : "0"}"
+  count = var.pi_full_access ? 1 : 0
 
   statement {
     sid = "PIFullPermissions"
 
     actions = [
-        "pi:DescribeDimensionKeys",
-        "pi:GetDimensionKeyDetails",
-        "pi:GetResourceMetrics",
+      "pi:DescribeDimensionKeys",
+      "pi:GetDimensionKeyDetails",
+      "pi:GetResourceMetrics",
     ]
-    
+
     resources = ["*"]
   }
 }

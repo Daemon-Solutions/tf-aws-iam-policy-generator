@@ -5,31 +5,31 @@ variable "cloudwatch_read" {
 
 variable "cloudwatch_read_only_resources" {
   description = "A list of Cloudwatch resources to which the user has Read Only access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cloudwatch_full_access_dashboard" {
   description = "Boolean indicating whether to give Full Dashboard access to CloudWatch."
-  type        = "string"
+  type        = string
   default     = false
 }
 
 variable "cloudwatch_full_access_dashboard_resources" {
   description = "A list of Cloudwatch resources to which the user has Full Dashboard access."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "cloudwatch_full_alarm_access" {
   description = "Boolean indicating whether to give Full access to CloudWatch Alarms."
-  type        = "string"
+  type        = string
   default     = false
 }
 
 variable "cloudwatch_full_alarm_access_resources" {
   description = "A list of Cloudwatch Alarms resources to which the user has Full access."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -40,12 +40,12 @@ variable "cloudwatch_full_access" {
 
 variable "cloudwatch_full_access_resources" {
   description = "A list of CloudWatch resources to which the user has Full Access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 data "aws_iam_policy_document" "cloudwatch_read_only" {
-  count = "${var.cloudwatch_read}"
+  count = var.cloudwatch_read ? 1 : 0
 
   statement {
     sid = "CloudWatchROAutoscalingDescribe"
@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "cloudwatch_read_only" {
       "autoscaling:Describe*",
     ]
 
-    resources = ["${var.cloudwatch_read_only_resources}"]
+    resources = var.cloudwatch_read_only_resources
   }
 
   statement {
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "cloudwatch_read_only" {
       "cloudwatch:List*",
     ]
 
-    resources = ["${var.cloudwatch_read_only_resources}"]
+    resources = var.cloudwatch_read_only_resources
   }
 
   statement {
@@ -80,7 +80,7 @@ data "aws_iam_policy_document" "cloudwatch_read_only" {
       "logs:FilterLogEvents",
     ]
 
-    resources = ["${var.cloudwatch_read_only_resources}"]
+    resources = var.cloudwatch_read_only_resources
   }
 
   statement {
@@ -91,12 +91,12 @@ data "aws_iam_policy_document" "cloudwatch_read_only" {
       "sns:List*",
     ]
 
-    resources = ["${var.cloudwatch_read_only_resources}"]
+    resources = var.cloudwatch_read_only_resources
   }
 }
 
 data "aws_iam_policy_document" "cloudwatch_full_access_dashboard" {
-  count = "${var.cloudwatch_full_access_dashboard}"
+  count = var.cloudwatch_full_access_dashboard ? 1 : 0
 
   statement {
     sid = "CloudWatchFullAccessAutoscalingDescribe"
@@ -107,12 +107,12 @@ data "aws_iam_policy_document" "cloudwatch_full_access_dashboard" {
       "logs:DeleteMetricFilter",
     ]
 
-    resources = ["${var.cloudwatch_full_access_dashboard_resources}"]
+    resources = var.cloudwatch_full_access_dashboard_resources
   }
 }
 
 data "aws_iam_policy_document" "cloudwatch_full_alarm_access" {
-  count = "${var.cloudwatch_full_access_dashboard}"
+  count = var.cloudwatch_full_access_dashboard ? 1 : 0
 
   statement {
     sid = "CloudWatchFullMetricsAccess"
@@ -125,12 +125,12 @@ data "aws_iam_policy_document" "cloudwatch_full_alarm_access" {
       "cloudwatch:GetMetricStatistics",
     ]
 
-    resources = ["${var.cloudwatch_full_alarm_access_resources}"]
+    resources = var.cloudwatch_full_alarm_access_resources
   }
 }
 
 data "aws_iam_policy_document" "cloudwatch_full_access" {
-  count = "${var.cloudwatch_full_access}"
+  count = var.cloudwatch_full_access ? 1 : 0
 
   statement {
     sid = "CloudWatchFullAccessAutoscalingDescribe"
@@ -139,7 +139,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "autoscaling:Describe*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = var.cloudwatch_full_access_resources
   }
 
   statement {
@@ -149,7 +149,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "cloudwatch:*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = var.cloudwatch_full_access_resources
   }
 
   statement {
@@ -159,7 +159,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "logs:*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = var.cloudwatch_full_access_resources
   }
 
   statement {
@@ -169,7 +169,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "sns:*",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = var.cloudwatch_full_access_resources
   }
 
   statement {
@@ -181,7 +181,7 @@ data "aws_iam_policy_document" "cloudwatch_full_access" {
       "iam:GetRole",
     ]
 
-    resources = ["${var.cloudwatch_full_access_resources}"]
+    resources = var.cloudwatch_full_access_resources
   }
 
   statement {

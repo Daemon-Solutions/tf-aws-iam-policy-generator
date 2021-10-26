@@ -2,6 +2,13 @@
 
 A module similar to tf-aws-iam-instance-profile for generating IAM policies for various different uses. e.g. policies for attaching to user, groups or roles. The purpose of this is to allow us to have well tested IAM policies that can be easily used.
 
+## Terraform version compatibility
+
+| Module version | Terraform version |
+|----------------|-------------------|
+| 2.x.x          | 0.12.x            |
+| 1.x.x          | 0.11.x            |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
