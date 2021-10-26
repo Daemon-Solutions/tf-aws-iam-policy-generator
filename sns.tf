@@ -10,7 +10,7 @@ variable "sns_read" {
 
 variable "sns_read_topics" {
   description = "A list of SNS Topics which the user has Read Only access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -21,7 +21,7 @@ variable "sns_write" {
 
 variable "sns_write_topics" {
   description = "A list of SNS topics to create policies to allow writing to."
-  type        = "list"
+  type        = any
   default     = []
 }
 
@@ -32,12 +32,12 @@ variable "sns_full_access" {
 
 variable "sns_full_access_topics" {
   description = "A list of SNS Topics which the user has Full Access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 data "aws_iam_policy_document" "sns_list" {
-  count = "${var.sns_list || var.sns_read || var.sns_write || var.sns_full_access ? "1" : "0"}"
+  count = var.sns_list || var.sns_read || var.sns_write || var.sns_full_access ? 1 : 0
 
   statement {
     sid = "SNSListAndGetTopics"
@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "sns_list" {
 }
 
 data "aws_iam_policy_document" "sns_read" {
-  count = "${var.sns_read}"
+  count = var.sns_read ? 1 : 0
 
   statement {
     sid = "SNSReadTopics"
@@ -62,12 +62,12 @@ data "aws_iam_policy_document" "sns_read" {
       "sns:Unsubscribe",
     ]
 
-    resources = ["${var.sns_read_topics}"]
+    resources = var.sns_read_topics
   }
 }
 
 data "aws_iam_policy_document" "sns_write" {
-  count = "${var.sns_write}"
+  count = var.sns_write ? 1 : 0
 
   statement {
     sid = "SNSWriteTopics"
@@ -76,12 +76,12 @@ data "aws_iam_policy_document" "sns_write" {
       "sns:Publish",
     ]
 
-    resources = ["${var.sns_write_topics}"]
+    resources = var.sns_write_topics
   }
 }
 
 data "aws_iam_policy_document" "sns_full_access" {
-  count = "${var.sns_full_access}"
+  count = var.sns_full_access ? 1 : 0
 
   statement {
     sid = "SNSFullAccess"
@@ -90,6 +90,6 @@ data "aws_iam_policy_document" "sns_full_access" {
       "sns:*",
     ]
 
-    resources = ["${var.sns_full_access_topics}"]
+    resources = var.sns_full_access_topics
   }
 }

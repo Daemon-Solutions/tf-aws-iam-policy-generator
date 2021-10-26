@@ -14,7 +14,7 @@ variable "iam_manage_access_key" {
 }
 
 data "aws_iam_policy_document" "iam_change_password" {
-  count = "${var.iam_change_password}"
+  count = var.iam_change_password ? 1 : 0
 
   statement {
     sid = "IAMChangePassword"
@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "iam_change_password" {
 }
 
 data "aws_iam_policy_document" "iam_get_account_password_policy" {
-  count = "${var.iam_get_account_password_policy}"
+  count = var.iam_get_account_password_policy ? 1 : 0
 
   statement {
     sid = "IAMGetAccountPasswordPolicy"
@@ -42,7 +42,7 @@ data "aws_iam_policy_document" "iam_get_account_password_policy" {
 }
 
 data "aws_iam_policy_document" "iam_manage_access_key" {
-  count = "${var.iam_manage_access_key}"
+  count = var.iam_manage_access_key ? 1 : 0
 
   statement {
     sid = "IAMManageAccessKey"

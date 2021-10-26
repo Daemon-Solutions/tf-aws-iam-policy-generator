@@ -10,7 +10,7 @@ variable "ssm_parameters_read" {
 
 variable "ssm_parameters_read_params" {
   description = "List of System Manager Parameter Store Parameters to grant read access to"
-  type        = "list"
+  type        = any
   default     = []
 }
 
@@ -21,7 +21,7 @@ variable "ssm_parameters_write" {
 
 variable "ssm_parameters_write_params" {
   description = "List of System Manager Parameter Store Parameters to grant write access to"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -32,12 +32,12 @@ variable "ssm_parameters_full_access" {
 
 variable "ssm_parameters_full_access_params" {
   description = "List of System Manager Parameter Store Parameters to grant full access access to"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 data "aws_iam_policy_document" "ssm_parameters_list" {
-  count = "${var.ssm_parameters_list || var.ssm_parameters_read || var.ssm_parameters_write || var.ssm_parameters_full_access ? "1" : "0"}"
+  count = var.ssm_parameters_list || var.ssm_parameters_read || var.ssm_parameters_write || var.ssm_parameters_full_access ? "1" : "0"
 
   statement {
     sid = "SSMParameterStoreListAndDescribeParams"
@@ -53,7 +53,7 @@ data "aws_iam_policy_document" "ssm_parameters_list" {
 }
 
 data "aws_iam_policy_document" "ssm_parameters_read" {
-  count = "${var.ssm_parameters_read}"
+  count = var.ssm_parameters_read ? 1 : 0
 
   statement {
     sid = "SSMParametersReadParams"
@@ -64,12 +64,12 @@ data "aws_iam_policy_document" "ssm_parameters_read" {
       "ssm:GetParametersByPath",
     ]
 
-    resources = ["${var.ssm_parameters_read_params}"]
+    resources = var.ssm_parameters_read_params
   }
 }
 
 data "aws_iam_policy_document" "ssm_parameters_write" {
-  count = "${var.ssm_parameters_write}"
+  count = var.ssm_parameters_write ? 1 : 0
 
   statement {
     sid = "SSMParametersWriteAccess"
@@ -81,12 +81,12 @@ data "aws_iam_policy_document" "ssm_parameters_write" {
       "ssm:PutParameter",
     ]
 
-    resources = ["${var.ssm_parameters_write_params}"]
+    resources = var.ssm_parameters_write_params
   }
 }
 
 data "aws_iam_policy_document" "ssm_parameters_full_access" {
-  count = "${var.ssm_parameters_full_access}"
+  count = var.ssm_parameters_full_access ? 1 : 0
 
   statement {
     sid = "SSMParametersFullAccess"
@@ -104,6 +104,6 @@ data "aws_iam_policy_document" "ssm_parameters_full_access" {
       "ssm:PutParameter",
     ]
 
-    resources = ["${var.ssm_parameters_full_access_params}"]
+    resources = var.ssm_parameters_full_access_params
   }
 }

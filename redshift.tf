@@ -5,7 +5,7 @@ variable "redshift_read" {
 
 variable "redshift_read_only_instances" {
   description = "A list of Redshift instances which the user has Read Only access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -16,12 +16,12 @@ variable "redshift_full_access" {
 
 variable "redshift_full_access_instances" {
   description = "A list of Redshift instances which the user has Full Access too."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 data "aws_iam_policy_document" "redshift_read_only" {
-  count = "${var.redshift_read}"
+  count = var.redshift_read ? 1 : 0
 
   statement {
     sid = "RedshiftRODescribeViewQueries"
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "redshift:ViewQueriesInConsole",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = var.redshift_read_only_instances
   }
 
   statement {
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "ec2:DescribeInternetGateways",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = var.redshift_read_only_instances
   }
 
   statement {
@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = var.redshift_read_only_instances
   }
 
   statement {
@@ -69,12 +69,12 @@ data "aws_iam_policy_document" "redshift_read_only" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_read_only_instances}"]
+    resources = var.redshift_read_only_instances
   }
 }
 
 data "aws_iam_policy_document" "redshift_full_access" {
-  count = "${var.redshift_full_access}"
+  count = var.redshift_full_access ? 1 : 0
 
   statement {
     sid = "RedshiftFullAccess"
@@ -83,7 +83,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "redshift:*",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = var.redshift_full_access_instances
   }
 
   statement {
@@ -99,7 +99,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "ec2:DescribeInternetGateways",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = var.redshift_full_access_instances
   }
 
   statement {
@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "sns:List*",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = var.redshift_full_access_instances
   }
 
   statement {
@@ -129,7 +129,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "cloudwatch:GetMetricData",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = var.redshift_full_access_instances
   }
 
   statement {
@@ -143,7 +143,7 @@ data "aws_iam_policy_document" "redshift_full_access" {
       "tag:TagResources",
     ]
 
-    resources = ["${var.redshift_full_access_instances}"]
+    resources = var.redshift_full_access_instances
   }
 
   statement {
