@@ -9,7 +9,6 @@ locals {
     data.aws_iam_policy_document.cloudwatch_full_access.*.json,
     data.aws_iam_policy_document.cloudwatch_full_access_dashboard.*.json,
     data.aws_iam_policy_document.cloudwatch_full_alarm_access.*.json,
-    data.aws_iam_policy_document.cloudwatch_full_alarm_access.*.json,
     data.aws_iam_policy_document.cloudwatch_event_full_access_resources.*.json,
     data.aws_iam_policy_document.cloudwatch_read_only.*.json,
     data.aws_iam_policy_document.dynamodb_full_access.*.json,
