@@ -9,8 +9,10 @@ variable "managed_policy_arns" {
 }
 
 data "external" "policy_fetcher" {
-  count   = var.managed_policies ? 1 : 0
-  program = ["python3", "${path.module}/policy_fetcher.py"]
+  count = var.managed_policies ? 1 : 0
+  program = [
+    "sh", "-c",
+  "python3 -m venv /tmp/venv && source /tmp/venv/bin/activate && pip install boto3 1>&2 && python ${path.module}/policy_fetcher.py"]
 
   query = {
     policy_arns = jsonencode(var.managed_policy_arns)
